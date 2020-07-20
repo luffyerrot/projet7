@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.pierre.apirest.entities.Book;
-import fr.pierre.apirest.service.BookService;
+import fr.pierre.apirest.services.BookService;
 
 @RestController
 @RequestMapping(value = "/book")

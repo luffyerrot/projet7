@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.pierre.apirest.entities.Copy;
-import fr.pierre.apirest.service.CopyService;
+import fr.pierre.apirest.services.CopyService;
 
 @RestController
 @RequestMapping(value = "/copy")

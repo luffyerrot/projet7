@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.pierre.apirest.entities.User;
-import fr.pierre.apirest.service.UserService;
+import fr.pierre.apirest.services.UserService;
 
 @RestController
 @RequestMapping(value = "/user")

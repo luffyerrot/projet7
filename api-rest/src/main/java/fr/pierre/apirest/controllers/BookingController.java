@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.pierre.apirest.entities.Booking;
-import fr.pierre.apirest.service.BookingService;
+import fr.pierre.apirest.services.BookingService;
 
 @RestController
 @RequestMapping(value = "/booking")
