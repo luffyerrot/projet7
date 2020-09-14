@@ -25,6 +25,11 @@ public class UserController {
 	
 	@GetMapping("/")
 	public ResponseEntity<List<User>> getAll() {
+		List<User> users = userService.findAll();
+		users.forEach(user->user.setBookings(null));
+		for (int i = 0; i < users.size(); i++) {
+			users.get(i).getRoles().forEach(user->user.setUsers(null));
+		}
 		return ResponseEntity.ok(userService.findAll());
 	}
 	
@@ -33,6 +38,28 @@ public class UserController {
 		User userById = userService.getById(id);
 		if (userById != null) {
 			return ResponseEntity.ok(userById);
+		}
+		return ResponseEntity.notFound().build();
+	}
+	
+	@GetMapping("/find/{email}")
+	public ResponseEntity<User>getByEmail(@PathVariable String email) {
+		User userByEmail = userService.findByEmail(email);
+		if (userByEmail != null) {
+			userByEmail.setBookings(null);
+			userByEmail.getRoles().forEach(user->user.setUsers(null));
+			return ResponseEntity.ok(userByEmail);
+		}
+		return ResponseEntity.notFound().build();
+	}
+
+	@GetMapping("/name/{name}")
+	public ResponseEntity<User>getByName(@PathVariable String name) {
+		User userByName = userService.getByName(name);
+		if (userByName != null) {
+			userByName.setBookings(null);
+			userByName.getRoles().forEach(user->user.setUsers(null));
+			return ResponseEntity.ok(userByName);
 		}
 		return ResponseEntity.notFound().build();
 	}

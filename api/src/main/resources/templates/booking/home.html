@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:insert="fragments/head.html">
+	<meta charset="UTF-8"/>
+	<title>Réserver un livre</title>
+</head>
+<body>
+	<header th:insert="fragments/header.html"></header>
+	<div class="container" id="main" align="center">
+		<div class="row">
+			<div class="col-md-12">
+				<h1><b>Livres</b></h1>
+				<div class="card">
+					<div class="card-body">
+					<table class="table table-dark table-responsive col-auto row col-md-9 col-md-push-10">
+						<tr>
+							<th scope="col">Titre</th>
+							<th scope="col">Auteur</th>
+							<th scope="col">Editeur</th>
+							<th scope="col">Nombre de livres</th>
+							<th scope="col">Réserver</th>
+						</tr>
+						<tr th:each="book : ${books}">
+					        <td th:text="${book.title}">...</td>
+					        <td th:text="${book.author}">...</td>
+					        <td th:text="${book.publisher}">...</td>
+					        <td th:text="${book?.copy?.available}">...</td>
+							<td>
+								<div th:if="${book?.copy?.available > 0}">
+									<a th:if="${#lists.contains(ids, book?.copy?.id)}" th:href="@{/booking/admin/create(copyid = ${book?.copy?.id})}"  class="btn btn-outline-danger" id="link">Réserver</a>
+									<a th:unless="${#lists.contains(ids, book?.copy?.id)}" th:href="@{/booking/admin/create(copyid = ${book?.copy?.id})}"  class="btn btn-outline-success" id="link">Réserver</a>
+								</div>
+								<div th:unless="${book?.copy?.available > 0}">
+									<a href=""  class="btn btn-outline-light" id="link"><del>Réserver</del></a>
+								</div>
+							</td>
+					    </tr>
+					</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br/>
+	<div th:insert="fragments/script.html"></div>
+	<div th:insert="fragments/footer.html"></div>
+</body>
+</html>

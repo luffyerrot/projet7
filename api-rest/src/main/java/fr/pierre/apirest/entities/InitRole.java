@@ -5,10 +5,7 @@ import org.json.JSONObject;
 public class InitRole {
 
 	public Role toObject(JSONObject json) {
-		Role role = new Role();
-		role.setUsers(null);
-		role.setId(json.getLong("id"));
-		role.setName(json.getString("name"));
+		Role role = new Role(json.getLong("id"), json.getString("name"), null);
 		return role;
 	}
 	

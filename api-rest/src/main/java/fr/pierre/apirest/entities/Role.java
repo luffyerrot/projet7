@@ -9,6 +9,16 @@ import javax.persistence.*;
 @Table(name = "roles")
 public class Role implements Serializable{
 
+	public Role() {
+		
+	}
+	
+	public Role(Long id, String name, List<User> user) {
+		this.id = id;
+		this.name = name;
+		this.users = user;
+	}
+	
 	@Id 
 	@GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

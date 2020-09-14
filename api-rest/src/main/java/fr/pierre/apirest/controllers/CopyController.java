@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import fr.pierre.apirest.entities.Book;
 import fr.pierre.apirest.entities.Copy;
 import fr.pierre.apirest.services.CopyService;
 
@@ -32,6 +33,8 @@ public class CopyController {
 	public ResponseEntity<Copy> getById(@PathVariable Long id) {
 		Copy copyById = copyService.getById(id);
 		if (copyById != null) {
+			copyById.setBook(new Book(copyById.getBook().getIbn(), copyById.getBook().getTitle(), copyById.getBook().getAuthor(), copyById.getBook().getPublisher()));
+			copyById.setBookings(null);
 			return ResponseEntity.ok(copyById);
 		}
 		return ResponseEntity.notFound().build();

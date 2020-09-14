@@ -18,4 +18,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	User updateUser(@Param("id")Long idTopos, @Param("username")String username, @Param("email")String description);
 	
 	Optional<User> findByEmail(String email);
+	
+	Optional<User> findByUsername(String name);
 }

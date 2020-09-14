@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.pierre.apirest.entities.Booking;
+import fr.pierre.apirest.entities.Copy;
 import fr.pierre.apirest.services.BookingService;
 
 @RestController
@@ -33,6 +34,17 @@ public class BookingController {
 		Booking bookingById = bookingService.getById(id);
 		if (bookingById != null) {
 			return ResponseEntity.ok(bookingById);
+		}
+		return ResponseEntity.notFound().build();
+	}
+
+	@GetMapping("/userid/{id}")
+	public ResponseEntity<List<Booking>> getByUserId(@PathVariable Long id) {
+		List<Booking> bookingByUserId = bookingService.getByUserId(id);
+		if (bookingByUserId != null) {
+			bookingByUserId.forEach(booking->booking.setCopy(new Copy(booking.getCopy().getId(), booking.getCopy().getEtat(), booking.getCopy().getBook().getAuthor(), booking.getCopy().getBook().getPublisher(), booking.getCopy().getBook().getTitle(), booking.getCopy().getBook().getIbn())));
+			bookingByUserId.forEach(booking->booking.setUser(null));
+			return ResponseEntity.ok(bookingByUserId);
 		}
 		return ResponseEntity.notFound().build();
 	}

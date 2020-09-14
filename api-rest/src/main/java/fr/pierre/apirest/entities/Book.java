@@ -15,6 +15,17 @@ import javax.persistence.Table;
 @Table(name = "books")
 public class Book {
 
+	public Book() {
+		
+	}
+	
+	public Book(Long ibn, String title, String author, String publisher) {
+		this.ibn = ibn;
+		this.title = title;
+		this.author = author;
+		this.publisher = publisher;
+	}
+	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ibn")
@@ -35,7 +46,7 @@ public class Book {
 	//---------------------------------------------------------------------------------
 
 	@OneToMany(mappedBy = "book")
-    private List <Copy> copy;
+    private List<Copy> copies;
 	
     //----------------------------------------------------------------------------------
 	
@@ -86,11 +97,11 @@ public class Book {
 		this.release_date = release_date;
 	}
 
-	public List<Copy> getCopy() {
-		return copy;
+	public List<Copy> getCopies() {
+		return copies;
 	}
 
-	public void setCopy(List<Copy> copy) {
-		this.copy = copy;
+	public void setCopies(List<Copy> copies) {
+		this.copies = copies;
 	}
 }

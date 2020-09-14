@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.pierre.apirest.entities.Book;
+import fr.pierre.apirest.entities.Copy;
 import fr.pierre.apirest.entities.InitBook;
 import fr.pierre.apirest.services.BookService;
+import fr.pierre.apirest.services.CopyService;
 
 @RestController
 @RequestMapping(value = "/book")
@@ -23,13 +25,21 @@ public class BookController {
 
 	@Autowired
 	BookService bookService;
+	@Autowired
+	CopyService copyService;
 	
 	InitBook init = new InitBook();
 	
 	@GetMapping("/")
 	public ResponseEntity<List<Book>> getAll() {
 		List<Book> books = bookService.findAll();
-		books.forEach(book->book.setCopy(null));
+		for (int i = 0; i < books.size(); i++) {
+
+			for (int j = 0; j < books.get(i).getCopies().size(); j++) {
+				books.get(i).getCopies().get(j).setBook(null);
+				books.get(i).getCopies().get(j).setBookings(null);
+			}
+		}
 		return ResponseEntity.ok(books);
 	}
 	
@@ -37,7 +47,10 @@ public class BookController {
 	public ResponseEntity<Book> getByIbn(@PathVariable Long ibn) {
 		Book bookByIbn = bookService.getByIbn(ibn);
 		if (bookByIbn != null) {
-			bookByIbn.setCopy(null);
+			for (int i = 0; i < bookByIbn.getCopies().size(); i++) {
+				bookByIbn.getCopies().get(i).setBook(null);
+				bookByIbn.getCopies().get(i).setBookings(null);
+			}
 			return ResponseEntity.ok(bookByIbn);
 		}
 		return ResponseEntity.notFound().build();
@@ -45,7 +58,9 @@ public class BookController {
 	
 	@PutMapping("/save")
 	public ResponseEntity<Book> saveBook(@RequestBody Book book) {
-		return ResponseEntity.ok(bookService.save(book));
+
+		Book book1 = bookService.create(book);
+		return ResponseEntity.ok(book1);
 	}
 	
 	@PostMapping("/update/{ibn}")

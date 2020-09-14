@@ -9,11 +9,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import fr.pierre.apirest.entities.User;
 import fr.pierre.apirest.repositories.UserRepository;
 
 @Service
+@Transactional
 public class CustomUserDetailsService implements UserDetailsService{
 
 	@Autowired
@@ -21,8 +23,7 @@ public class CustomUserDetailsService implements UserDetailsService{
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        User user = userRepository.findByEmail(userName)
-       .orElseThrow(() -> new UsernameNotFoundException("Email " + userName + " not found"));
+        User user = userRepository.findByEmail(userName).orElseThrow(() -> new UsernameNotFoundException("Email " + userName + " not found"));
          return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(),
          getAuthorities(user));
     }

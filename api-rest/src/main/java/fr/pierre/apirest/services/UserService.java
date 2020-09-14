@@ -1,5 +1,6 @@
 package fr.pierre.apirest.services;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -8,8 +9,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import fr.pierre.apirest.entities.Role;
 import fr.pierre.apirest.entities.User;
 import fr.pierre.apirest.repositories.UserRepository;
 
@@ -18,6 +21,12 @@ public class UserService {
 	
 	@Autowired
 	UserRepository userRepository;
+	
+	@Autowired
+	RoleService roleService;
+
+	@Autowired
+	PasswordEncoder passwordEncoder;
 
 	Logger logger = LoggerFactory.getLogger(UserService.class);
 
@@ -31,8 +40,19 @@ public class UserService {
 		return null;
 	}
 
+	public User getByName(String name) {
+		this.logger.debug("getByName Call = " + name);
+		User user = userRepository.findByUsername(name).get();
+		this.logger.debug("getByName Return = " + user);
+		return user;
+	}
+
 	public User save(User user) {
 		this.logger.debug("save Call = " + user);
+		user.setPassword(this.passwordEncoder.encode(user.getPassword()));
+		Role role = roleService.findByName("ROLE_USER");
+		this.logger.debug("save Role = " + role);
+		user.setRoles(Arrays.asList(role));
 		User userreturn = userRepository.save(user);
 		this.logger.debug("save Return = " + userreturn);
 		return userreturn;
@@ -76,5 +96,12 @@ public class UserService {
 	public void deleteById(Long id) {
 		this.logger.debug("deleteById Call = " + id);
 		userRepository.deleteById(id);
+	}
+	
+	public User findByEmail(String email) {
+		this.logger.debug("findByEmail Call = " + email);
+		User user = userRepository.findByEmail(email).get();
+		this.logger.debug("findByEmail Return = " + user);
+		return user;
 	}
 }

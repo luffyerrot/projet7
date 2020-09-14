@@ -6,10 +6,15 @@ public class InitCopy {
 
 	public Copy toObject(JSONObject json) {
 		Copy copy = new Copy();
-		copy.setBook(null);
+		JSONObject jsonObj = (JSONObject)json.get("book");
+		Long ibn = jsonObj.getLong("ibn");
+		String title = jsonObj.getString("title");
+		String author = jsonObj.getString("author");
+		String publisher = jsonObj.getString("publisher");
+		copy.setBook(new Book(ibn, title, author, publisher));
 		copy.setBookings(null);
 		copy.setId(json.getLong("id"));
-		copy.setAvailable(json.getInt("available"));
+		copy.setEtat(json.getString("etat"));
 		return copy;
 	}
 	
@@ -18,7 +23,7 @@ public class InitCopy {
 		json.put("book", "");
 		json.put("booking", "");
 		json.put("id", copy.getId());
-		json.put("available", copy.getAvailable());
+		json.put("etat", copy.getEtat());
 		return json;
 	}
 }

@@ -15,20 +15,21 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import fr.pierre.apirest.entities.Book;
+import fr.pierre.apirest.entities.Copy;
 import fr.pierre.apirest.entities.InitBook;
 
 @Service
 public class BookService {
 	
 	@Autowired
-	private Environment environment;
+	private Environment environement;
 	
 	private InitBook init = new InitBook();
 	private RestTemplate restTemplate = new RestTemplate();
 
 	public Book getBookByIbn(Long ibn)
 	{
-	    final String uri = environment.getRequiredProperty("book.url") + ibn;
+	    final String uri = environement.getRequiredProperty("book.url") + ibn;
 	     
 	    String result = restTemplate.getForObject(uri, String.class);
 		JSONObject json = new JSONObject(result);
@@ -42,9 +43,9 @@ public class BookService {
 	}
 	
 	public List<Book> getAllBook()
-	{
-	    final String uri = environment.getRequiredProperty("book.url");
-	     
+	{	     
+	    final String uri = environement.getRequiredProperty("book.url");
+	    
 	    String result = restTemplate.getForObject(uri, String.class);
 	    JSONArray arrayJson = new JSONArray(result);
 	    List<Book> books = new ArrayList();
@@ -59,21 +60,27 @@ public class BookService {
 	    return books;
 	}
 	
-	public void create(Book book, String date)
+	public void create(Book book, String date, List<String> etats)
 	{
-		final String uri = environment.getRequiredProperty("book.url.save");
+		final String uri = environement.getRequiredProperty("book.url") + "save";
 		try {
 			Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(date);
 			book.setRelease_date(date1);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
+		List<Copy> copies = new ArrayList();
+		for (int i = 0; i < etats.size(); i++) {
+			String etat = etats.get(i);
+			copies.add(new Copy(etat));
+		}
+		book.setCopies(copies);
 		restTemplate.put(uri, book);
 	}
 	
 	public Book update(Book book, Long ibn)
 	{
-		final String uri = environment.getRequiredProperty("book.url.update") + ibn;
+		final String uri = environement.getRequiredProperty("book.url") + "update/" + ibn;
 		String result = restTemplate.postForObject(uri, book, String.class);
 		JSONObject json = new JSONObject(result);
 		Book book1 = null;
@@ -87,7 +94,7 @@ public class BookService {
 	
 	public void delete(Long ibn)
 	{
-		final String uri = environment.getRequiredProperty("book.url.delete") + ibn;
+		final String uri = environement.getRequiredProperty("book.url") + "delete/" + ibn;
 		restTemplate.delete(uri);
 	}
 }

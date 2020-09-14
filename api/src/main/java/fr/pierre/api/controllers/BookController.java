@@ -1,5 +1,8 @@
 package fr.pierre.api.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -21,26 +24,56 @@ public class BookController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView getBookByIbn(ModelMap model) {
-	    model.addAttribute("testAllBook", serviceBook.getAllBook());
-	    return new ModelAndView("book/book", model);
+	    model.addAttribute("books", serviceBook.getAllBook());
+	    return new ModelAndView("book/home", model);
 	}
 	
-	@RequestMapping(value = "/", method = RequestMethod.POST)
+	@RequestMapping(value = "/detail", method = RequestMethod.GET)
 	public ModelAndView postBookByIbn(ModelMap model, @RequestParam(name="ibn", required = true) Long ibn) {
-	    model.addAttribute("testAllBook", serviceBook.getAllBook());
-	    model.addAttribute("testBook", serviceBook.getBookByIbn(ibn));
-	    return new ModelAndView("book/book", model);
+	    model.addAttribute("book", serviceBook.getBookByIbn(ibn));
+	    return new ModelAndView("book/detail", model);
 	}
 	
-	@RequestMapping(value = "/create", method = RequestMethod.GET)
-	public ModelAndView createBook(ModelMap model) {
+	@RequestMapping(value = "/admin/create", method = RequestMethod.GET)
+	public ModelAndView create(ModelMap model) {
 	    return new ModelAndView("book/create", model);
 	}
 	
-	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public ModelAndView createBook(ModelMap model, @ModelAttribute("book") Book book, @RequestParam(name="date", required = true) String date) {
-		serviceBook.create(book, date);
-	    model.addAttribute("testAllBook", serviceBook.getAllBook());
+	@RequestMapping(value = "/admin/create", method = RequestMethod.POST)
+	public ModelAndView create(ModelMap model, @ModelAttribute("book") Book book, @RequestParam(name="date", required = true) String date, @RequestParam(name="available", required = true) Integer available) {
+	    model.addAttribute("book", book);
+	    model.addAttribute("availables", available);
+	    return new ModelAndView("book/copies", model);
+	}
+	
+	@RequestMapping(value = "/admin/copies", method = RequestMethod.GET)
+	public ModelAndView addCopies(ModelMap model, @RequestParam(name="etats", required = true) List<String> etats, @RequestParam(name="book", required = true) Book book) {
+	    return new ModelAndView("book/copies", model);
+	}
+	
+	@RequestMapping(value = "/admin/copies", method = RequestMethod.POST)
+	public ModelAndView addCopies(ModelMap model) {
+	    model.addAttribute("books", serviceBook.getAllBook());
+	    return new ModelAndView("redirect:/book/", model);
+	}
+	
+	@RequestMapping(value = "/admin/update", method = RequestMethod.GET)
+	public ModelAndView update(ModelMap model, @RequestParam(name="ibn", required = true) Long ibn) {
+	    model.addAttribute("bookIbn", serviceBook.getBookByIbn(ibn));
+	    return new ModelAndView("book/update", model);
+	}
+	
+	@RequestMapping(value = "/admin/update", method = RequestMethod.POST)
+	public ModelAndView update(ModelMap model, @ModelAttribute("book") Book book) {
+		serviceBook.update(book, book.getIbn());
+	    model.addAttribute("books", serviceBook.getAllBook());
+	    return new ModelAndView("redirect:/book/", model);
+	}
+	
+	@RequestMapping(value = "/admin/delete", method = RequestMethod.POST)
+	public ModelAndView delete(ModelMap model, @RequestParam(name="ibn", required = true) Long ibn) {
+		serviceBook.delete(ibn);
+	    model.addAttribute("books", serviceBook.getAllBook());
 	    return new ModelAndView("redirect:/book/", model);
 	}
 }

@@ -45,7 +45,7 @@ public class CopyService {
 	
 	public Copy findById(Long id) {
 		Copy copy = copyRepository.findById(id).get();
-		this.logger.debug("findAll Return = " + copy);
+		this.logger.debug("findById Return = " + copy);
 		return copy;
 	}
 }

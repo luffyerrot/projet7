@@ -17,13 +17,32 @@ import javax.persistence.Table;
 @Table(name = "copies")
 public class Copy {
 	
+	public Copy() {
+		
+	}
+	
+	public Copy(Long id, String etat) {
+		this.id = id;
+		this.etat = etat;
+	}
+	
+	public Copy(Long id, String etat, String author, String publisher, String title, Long ibn) {
+		this.id = id;
+		this.etat = etat;
+		this.book = new Book(ibn, title, author, publisher);
+	}
+	
+	public Copy(String etat) {
+		this.etat = etat;
+	}
+	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
     private Long id;
-	
+
 	@Column(nullable = false)
-	private int available;
+	private String etat;
 	
 	//---------------------------------------------------------------------------------
 	   
@@ -38,7 +57,7 @@ public class Copy {
 
 	@Override
 	public String toString() {
-		return "Copy [id=" + id + ", available=" + available + "]";
+		return "Copy [id=" + id + ", etat=" + etat + "]";
 	}
 	
 	public Long getId() {
@@ -47,14 +66,6 @@ public class Copy {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public int getAvailable() {
-		return available;
-	}
-
-	public void setAvailable(int available) {
-		this.available = available;
 	}
 
 	public List<Booking> getBookings() {
@@ -71,5 +82,13 @@ public class Copy {
 
 	public void setBook(Book book) {
 		this.book = book;
+	}
+
+	public String getEtat() {
+		return etat;
+	}
+
+	public void setEtat(String etat) {
+		this.etat = etat;
 	}
 }

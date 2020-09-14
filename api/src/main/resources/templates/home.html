@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:insert="fragments/head.html">
+	<meta charset="UTF-8"/>
+	<title>Home</title>
+</head>
+<body>
+	<header th:insert="fragments/header.html"></header>
+	<div class="container" id="main" align="center">
+		<div class="row">
+			<div class="col-md-12">
+				<h1><b>Profils</b></h1>
+				<div class="card">
+					<div class="card-body">
+						<div sec:authorize="isAuthenticated()">
+							<h2 class="card-title">Mes réservations</h2>
+							<table class="table table-dark table-responsive col-auto row col-md-5 col-md-push-8">
+								<tr>
+									<th scope="col">titre</th>
+									<th scope="col">auteur</th>
+									<th scope="col">Date de réservation</th>
+									<th scope="col">Retard</th>
+								</tr>
+								<tr th:each="booking : ${bookings}">
+							        <td th:text="${booking?.copy?.book?.title}">...</td>
+							        <td th:text="${booking?.copy?.book?.author}">...</td>
+							        <td th:text="${#dates.format(booking?.booking_date, 'dd-MM-yyyy')}">...</td>
+							        <td th:text="${booking?.delay}">...</td>
+							    </tr>
+							</table>
+						</div>
+						<br>
+						<div sec:authorize="isAuthenticated()">
+							<a th:href="@{/user/detail}" class="btn btn-outline-secondary">Détails</a>
+							<br/><br/>
+						</div>
+						<br/>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div th:insert="fragments/script.html"></div>
+	<div th:insert="fragments/footer.html"></div>
+</body>
+</html>
