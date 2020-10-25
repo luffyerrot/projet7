@@ -13,27 +13,19 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 				<h1><b>Livres</b></h1>
 				<div class="card">
 					<div class="card-body">
-					<table class="table table-dark table-responsive col-auto row col-md-9 col-md-push-10">
+					<table class="table table-dark table-responsive col-auto row col-md-7 col-md-push-7">
 						<tr>
 							<th scope="col">Titre</th>
 							<th scope="col">Auteur</th>
 							<th scope="col">Editeur</th>
-							<th scope="col">Nombre de livres</th>
 							<th scope="col">Réserver</th>
 						</tr>
 						<tr th:each="book : ${books}">
 					        <td th:text="${book.title}">...</td>
 					        <td th:text="${book.author}">...</td>
 					        <td th:text="${book.publisher}">...</td>
-					        <td th:text="${book?.copy?.available}">...</td>
 							<td>
-								<div th:if="${book?.copy?.available > 0}">
-									<a th:if="${#lists.contains(ids, book?.copy?.id)}" th:href="@{/booking/admin/create(copyid = ${book?.copy?.id})}"  class="btn btn-outline-danger" id="link">Réserver</a>
-									<a th:unless="${#lists.contains(ids, book?.copy?.id)}" th:href="@{/booking/admin/create(copyid = ${book?.copy?.id})}"  class="btn btn-outline-success" id="link">Réserver</a>
-								</div>
-								<div th:unless="${book?.copy?.available > 0}">
-									<a href=""  class="btn btn-outline-light" id="link"><del>Réserver</del></a>
-								</div>
+								<a th:href="@{/booking/detail(ibn = ${book.ibn})}"  class="btn btn-outline-success" id="link">Les copies</a>
 							</td>
 					    </tr>
 					</table>

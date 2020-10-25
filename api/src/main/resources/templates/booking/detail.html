@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:insert="fragments/head.html">
+	<meta charset="UTF-8"/>
+	<title>Réserver un livre</title>
+</head>
+<body>
+	<header th:insert="fragments/header.html"></header>
+	<div class="container" id="main" align="center">
+		<div class="row">
+			<div class="col-md-12">
+				<h1><b>Livres</b></h1>
+				<div class="card">
+					<div class="card-body">
+					<table class="table table-dark table-responsive col-auto row col-md-4 col-md-push-4">
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">Etat</th>
+							<th scope="col">Id</th>
+							<th scope="col">Réserver</th>
+						</tr>
+						<tr th:each="copie, cStat : ${copies}">
+					        <td th:text="${cStat.index}">...</td>
+					        <td th:text="${copie.etat}">...</td>
+					        <td th:text="${copie.id}">...</td>
+							<td>
+								<div th:if="${userbookingcopy.contains(copie.id)}">
+									<p align="center">---</p>
+								</div>
+								<div th:unless="${userbookingcopy.contains(copie.id)}">
+									<a th:href="@{/booking/create(id = ${copie.id})}"  class="btn btn-outline-danger" id="link">Réserver</a>
+								</div>
+							</td>
+					    </tr>
+					</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br/>
+	<div th:insert="fragments/script.html"></div>
+	<div th:insert="fragments/footer.html"></div>
+</body>
+</html>

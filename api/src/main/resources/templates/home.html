@@ -19,8 +19,8 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 								<tr>
 									<th scope="col">titre</th>
 									<th scope="col">auteur</th>
-									<th scope="col">Date de réservation</th>
-									<th scope="col">Retard</th>
+									<th scope="col">Date de rendu</th>
+									<th scope="col">Delai</th>
 								</tr>
 								<tr th:each="booking : ${bookings}">
 							        <td th:text="${booking?.copy?.book?.title}">...</td>

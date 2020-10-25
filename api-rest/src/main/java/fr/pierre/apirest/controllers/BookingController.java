@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fr.pierre.apirest.entities.Booking;
 import fr.pierre.apirest.entities.Copy;
+import fr.pierre.apirest.entities.User;
 import fr.pierre.apirest.services.BookingService;
 
 @RestController
@@ -67,5 +68,13 @@ public class BookingController {
 	public ResponseEntity<Void> deleteBooking(@PathVariable Long id) {
 		bookingService.deleteById(id);
 		return ResponseEntity.ok().build();
+	}
+	
+	@GetMapping("/getdate")
+	public ResponseEntity<List<Booking>> getWithDate() {
+		List<Booking> bookingByDateAndDelay = bookingService.findAllByDate();
+		bookingByDateAndDelay.forEach(booking->booking.setCopy(new Copy(booking.getCopy().getId(), booking.getCopy().getEtat(), booking.getCopy().getBook().getAuthor(), booking.getCopy().getBook().getPublisher(), booking.getCopy().getBook().getTitle(), booking.getCopy().getBook().getIbn())));
+		bookingByDateAndDelay.forEach(booking->booking.setUser(new User(booking.getUser().getId(), booking.getUser().getEmail(), booking.getUser().getUsername())));
+		return ResponseEntity.ok(bookingByDateAndDelay);
 	}
 }

@@ -1,14 +1,15 @@
 package fr.pierre.api.services;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.http.ResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.security.core.Authentication;
@@ -109,12 +110,24 @@ public class BookingService {
 		return user;
 	}
 	
-	public void create(Long copyId)
-	{
-		/*final String uri = environment.getRequiredProperty("booking.url") + "save";
+	public List<Long> userBookingCopyId() {
+
 		final String uriBooking = environment.getRequiredProperty("booking.url") + "userid/" + userAuth().getId();
-		final String uriCopy = environment.getRequiredProperty("copy.url") + copyId;
-		final String uriCopyUp = environment.getRequiredProperty("copy.url") + "update/" + copyId;
+		String resultBooking = restTemplate.getForObject(uriBooking, String.class);
+		JSONArray jsonBooking = new JSONArray(resultBooking);
+		List<Long> userCopyId = new ArrayList();
+		for (Object o: jsonBooking) {
+			Long idCopy = ((JSONObject)o).getJSONObject("copy").getLong("id");
+			userCopyId.add(idCopy);
+		}
+		return userCopyId;
+	}
+	
+	public ResponseEntity<Void> create(Long id)
+	{
+		final String uri = environment.getRequiredProperty("booking.url") + "save";
+		final String uriBooking = environment.getRequiredProperty("booking.url") + "userid/" + userAuth().getId();
+		final String uriCopy = environment.getRequiredProperty("copy.url") + id;
 		
 		String resultBooking = restTemplate.getForObject(uriBooking, String.class);
 		JSONArray jsonB = new JSONArray(resultBooking);
@@ -123,9 +136,8 @@ public class BookingService {
 			Long idCopy = ((JSONObject)o).getJSONObject("copy").getLong("id");
 			userCopyId.add(idCopy);
 		}
-		if (userCopyId.contains(copyId)) {
-			System.out.println("Deja réservé par cet utilisateur");
-			return;
+		if (userCopyId.contains(id)) {
+			return ResponseEntity.badRequest().build();
 		}
 		
 	    String resultCopy = restTemplate.getForObject(uriCopy, String.class);
@@ -134,28 +146,26 @@ public class BookingService {
 		Copy copy = initCopy.toObject(jsonC);
 		
 		Booking booking = new Booking();
+		booking.setCopy(copy);
+		booking.setUser(userAuth());
 		
-		if (copy.getAvailable() > 0) {
-			copy.setAvailable(copy.getAvailable() - 1);
-			copy.getBook().setIbn(copy.getBook().getIbn());
-			restTemplate.postForObject(uriCopyUp, copy, String.class);
-			booking.setCopy(copy);
-			booking.setUser(userAuth());
-		} else {
-			System.out.println("Il n'y a plus d'exemplaires disponible !");
-			return;
-		}
+		Date date = new Date();
+		Calendar c = Calendar.getInstance();
+		c.setTime(date);
+		c.add(Calendar.DATE, -15);
+		date = c.getTime();
 		
-		Date date = new SimpleDateFormat("yyyy-MM-dd").getCalendar().getTime();
 		booking.setBooking_date(date);
 		booking.setDelay(false);
 		booking.setRendering(false);
-		restTemplate.put(uri, booking);*/
+		booking.setRecall(0);
+		restTemplate.put(uri, booking);
+		return ResponseEntity.ok().build();
 	}
 	
 	public Booking update(Booking booking, Long id)
 	{
-		final String uri = environment.getRequiredProperty("booking.url.update") + id;
+		final String uri = environment.getRequiredProperty("booking.url") + "update/" + id;
 		String result = restTemplate.postForObject(uri, booking, String.class);
 		JSONObject json = new JSONObject(result);
 		Booking booking1 = null;
@@ -169,7 +179,7 @@ public class BookingService {
 	
 	public void delete(Long id)
 	{
-		final String uri = environment.getRequiredProperty("booking.url.delete") + id;
+		final String uri = environment.getRequiredProperty("booking.url") + "delete/" + id;
 		restTemplate.delete(uri);
 	}
 }

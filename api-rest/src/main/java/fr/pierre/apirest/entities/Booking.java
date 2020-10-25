@@ -19,11 +19,14 @@ public class Booking {
 	@Column(nullable=false)
     private Boolean delay;
 	
+	@Column
+	private Integer recall;
+
 	@Column(nullable=false)
-	private Boolean rendering;
+    private Boolean rendering;
 	
 	//---------------------------------------------------------------------------------
-	
+
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name = "user_id")
     private User user;
@@ -36,7 +39,7 @@ public class Booking {
 
 	@Override
 	public String toString() {
-		return "Booking [id=" + id + ", booking_date=" + booking_date + ", delay=" + delay + ", rendering=" + rendering
+		return "Booking [id=" + id + ", booking_date=" + booking_date + ", delay=" + delay + ", recall=" + recall
 				+ "]";
 	}
 	
@@ -64,12 +67,12 @@ public class Booking {
 		this.delay = delay;
 	}
 
-	public Boolean getRendering() {
-		return rendering;
+	public int getRecall() {
+		return recall;
 	}
 
-	public void setRendering(Boolean rendering) {
-		this.rendering = rendering;
+	public void setRecall(int recall) {
+		this.recall = recall;
 	}
 
 	public User getUser() {
@@ -86,5 +89,17 @@ public class Booking {
 
 	public void setCopy(Copy copy) {
 		this.copy = copy;
+	}
+	
+	public Boolean getRendering() {
+		return rendering;
+	}
+
+	public void setRendering(Boolean rendering) {
+		this.rendering = rendering;
+	}
+
+	public void setRecall(Integer recall) {
+		this.recall = recall;
 	}
 }

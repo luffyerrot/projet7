@@ -10,6 +10,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import fr.pierre.apirest.entities.Book;
 import fr.pierre.apirest.entities.Copy;
 import fr.pierre.apirest.entities.InitCopy;
 
@@ -47,15 +48,16 @@ public class CopyService {
 	    return copies;
 	}
 	
-	public void create(Copy copy)
+	public void create(Copy copy, Book book)
 	{
-		final String uri = environment.getRequiredProperty("copy.url.save");
-		restTemplate.put(uri, init.toJson(copy));
+		final String uri = environment.getRequiredProperty("copy.url") + "save";
+		copy.setBook(book);
+		restTemplate.put(uri, copy);
 	}
 	
 	public Copy update(Copy copy, Long id)
 	{
-		final String uri = environment.getRequiredProperty("copy.url.update") + id;
+		final String uri = environment.getRequiredProperty("copy.url") + "update/" + id;
 		String result = restTemplate.postForObject(uri, copy, String.class);
 		JSONObject json = new JSONObject(result);
 		Copy copy1 = null;
@@ -65,7 +67,7 @@ public class CopyService {
 	
 	public void delete(Long id)
 	{
-		final String uri = environment.getRequiredProperty("copy.url.delete") + id;
+		final String uri = environment.getRequiredProperty("copy.url") + "delete/" + id;
 		restTemplate.delete(uri);
 	}
 }

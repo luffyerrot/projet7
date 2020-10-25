@@ -26,10 +26,13 @@
 	</section>
 	<section name="Maven2ProjectWizardArchifactPage">
 		<list key="package">
+			<item value="fr.pierre.batch"/>
 		</list>
 		<list key="groupId">
+			<item value="fr.pierre"/>
 		</list>
 		<list key="artifactId">
+			<item value="batch"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
@@ -74,6 +77,7 @@
 	</section>
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="C:\Users\Pierre\Desktop\Projet 7\batch"/>
 			<item value="C:\Users\Pierre\Desktop\Projet 7\api"/>
 			<item value="C:\Users\Pierre\Desktop\Projet 7\api-rest"/>
 		</list>

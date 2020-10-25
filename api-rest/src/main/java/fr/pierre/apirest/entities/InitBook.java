@@ -14,10 +14,10 @@ public class InitBook {
 	
 	public Book toObject(JSONObject json) throws ParseException, JSONException {
 		Book book = new Book();
-		JSONArray jsonArray = (JSONArray)json.get("copy");
+		JSONArray jsonA = json.getJSONArray("copies");
 		List<Copy> copies = new ArrayList();
-		for (Object o: jsonArray) {
-			Long id = ((JSONObject)o).getLong("id");	
+		for (Object o : jsonA) {
+			Long id = ((JSONObject)o).getLong("id");
 			String etat = ((JSONObject)o).getString("etat");
 			copies.add(new Copy(id, etat));
 		}

@@ -104,6 +104,8 @@
 		<item key="JarManifestWizardPage.SEAL_JAR" value="false"/>
 		<list key="JarPackageWizardPage.DESTINATION_NAMES_ID">
 			<item value="api\libs\entities.jar"/>
+			<item value="batch\libs\entities.jar"/>
+			<item value="batch/libs/entities.jar"/>
 			<item value="api/libs/entities.jar"/>
 			<item value="api/entities.jar"/>
 		</list>

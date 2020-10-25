@@ -21,8 +21,9 @@ public class InitBooking {
 		Date date1;
 		date1 = new SimpleDateFormat("yyyy-MM-dd").parse(date);
 		booking.setBooking_date(date1);
-		booking.setRendering(json.getBoolean("rendering"));
+		booking.setRecall(json.getInt("recall"));
 		booking.setDelay(json.getBoolean("delay"));
+		booking.setDelay(json.getBoolean("rendering"));
 		return booking;
 	}
 	
@@ -32,8 +33,9 @@ public class InitBooking {
 		json.put("user", "");
 		json.put("id", booking.getId());
 		json.put("booking_date", booking.getBooking_date());
-		json.put("rendering", booking.getRendering());
+		json.put("recall", booking.getRecall());
 		json.put("delay", booking.getDelay());
+		json.put("rendering", booking.getDelay());
 		return json;
 	}
 }

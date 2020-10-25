@@ -1,5 +1,6 @@
 package fr.pierre.apirest.services;
 
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -62,11 +63,6 @@ public class BookingService {
 		bookingRepository.changeDelay(copy, delay);
 	}
 	
-	public void changeRendering(Copy copy, Boolean rendering) {
-		this.logger.info("changeRendering Call = " + copy.toString() + " " + rendering);
-		bookingRepository.changeRendering(copy, rendering);
-	}
-	
 	public void deleteById(Long idBooking) {
 		this.logger.info("deleteById Call = " + idBooking);
 		bookingRepository.deleteById(idBooking);
@@ -81,8 +77,16 @@ public class BookingService {
 	}
 
 	public List<Booking> findAll() {
-		List<Booking> booking = bookingRepository.findAll();
-		this.logger.debug("findAll Return = " + booking);
-		return booking;
+		List<Booking> bookings = bookingRepository.findAll();
+		bookings.forEach(b -> b.setUser(null));
+		bookings.forEach(booking->booking.setCopy(new Copy(booking.getCopy().getId(), booking.getCopy().getEtat(), booking.getCopy().getBook().getAuthor(), booking.getCopy().getBook().getPublisher(), booking.getCopy().getBook().getTitle(), booking.getCopy().getBook().getIbn())));
+		
+		this.logger.debug("findAll Return = " + bookings);
+		return bookings;
+	}
+	
+	public List<Booking> findAllByDate() {
+		List<Booking> bookings = bookingRepository.getByDate(new Date());
+		return bookings;
 	}
 }

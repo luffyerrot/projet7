@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import fr.pierre.apirest.entities.Book;
-import fr.pierre.apirest.entities.Copy;
 import fr.pierre.apirest.entities.InitBook;
 
 @Service
@@ -60,7 +59,7 @@ public class BookService {
 	    return books;
 	}
 	
-	public void create(Book book, String date, List<String> etats)
+	public void create(Book book, String date)
 	{
 		final String uri = environement.getRequiredProperty("book.url") + "save";
 		try {
@@ -69,12 +68,6 @@ public class BookService {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		List<Copy> copies = new ArrayList();
-		for (int i = 0; i < etats.size(); i++) {
-			String etat = etats.get(i);
-			copies.add(new Copy(etat));
-		}
-		book.setCopies(copies);
 		restTemplate.put(uri, book);
 	}
 	
