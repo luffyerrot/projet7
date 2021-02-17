@@ -8,20 +8,18 @@ import org.springframework.web.client.RestTemplate;
 import fr.pierre.apirest.entities.Booking;
 
 public class BookingWriter implements ItemWriter<Booking>{
-
-	private final String uri;
-	private final RestTemplate restTemplate;
 	
-	public BookingWriter(String uri, RestTemplate restTemplate) {
-		this.uri = uri;
-		this.restTemplate = restTemplate;
-	}
-	
+	private RestTemplate restTemplate = new RestTemplate();
+		
 	@Override
 	public void write(List<? extends Booking> items) throws Exception {
-		for (Booking booking : items) {
-			restTemplate.postForObject(uri + booking.getId(), booking, String.class);
+		
+		for (int i = 0; i < items.size(); i++) {
+
+			Booking booking = items.get(i);
+			System.out.println("-------------------w " + booking.toString());
+			final String uri = "http://localhost:8080/booking/updateRecall/" + booking.getId();
+			restTemplate.postForObject(uri, booking, String.class);
 		}
 	}
-
 }

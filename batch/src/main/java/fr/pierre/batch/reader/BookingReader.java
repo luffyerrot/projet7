@@ -17,22 +17,15 @@ import fr.pierre.apirest.entities.InitBooking;
 
 public class BookingReader implements ItemReader<Booking>{
 	
-	private final String uri;
-	private final RestTemplate restTemplate;
 	private InitBooking init = new InitBooking();
 	
 	private int nextBookingIndex;
 	private List<Booking> bookingData;
-	
-	public BookingReader(String uri, RestTemplate restTemplate) {
-		this.uri = uri;
-		this.restTemplate = restTemplate;
-		nextBookingIndex = 0;
-	}
 
 	@Override
-	public Booking read() throws Exception, UnexpectedInputException, ParseException, NonTransientResourceException {
-		 if (bookingDataIsNotInitialized()) {
+	public Booking read() throws Exception, UnexpectedInputException, ParseException, NonTransientResourceException {			
+		 	
+		if (bookingDataIsNotInitialized()) {
 	            bookingData = fetchBookingDataFromAPI();
 	        }
 	 
@@ -41,8 +34,11 @@ public class BookingReader implements ItemReader<Booking>{
 	        if (nextBookingIndex < bookingData.size()) {
 	        	nextBooking = bookingData.get(nextBookingIndex);
 	        	nextBookingIndex++;
+	        } else {
+	        	nextBookingIndex = 0;
 	        }
-	 
+
+			System.out.println("-------------------r " + nextBooking);
 	        return nextBooking;
 	}
 
@@ -51,9 +47,11 @@ public class BookingReader implements ItemReader<Booking>{
     }
  
     private List<Booking> fetchBookingDataFromAPI() {
+		String uri = "http://localhost:8080/booking/getdate/";
+		RestTemplate restTemplate = new RestTemplate();
     	String result = restTemplate.getForObject(uri, String.class);
     	JSONArray arrayJson = new JSONArray(result);
-	    List<Booking> bookings = new ArrayList();
+	    List<Booking> bookings = new ArrayList<>();
 	    for (int i = 0; i < arrayJson.length(); i++){
 	    	JSONObject json = new JSONObject(arrayJson.get(i).toString());
 			try {

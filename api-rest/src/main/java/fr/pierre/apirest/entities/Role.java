@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "roles")
 public class Role implements Serializable{

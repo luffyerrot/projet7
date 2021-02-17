@@ -57,7 +57,7 @@ public class BookService {
 	}
 	
 	public Book create(Book book) {
-		List<String> etats = new ArrayList();
+		List<String> etats = new ArrayList<>();
 		for (int i = 0; i < book.getCopies().size(); i++) {
 			etats.add(book.getCopies().get(i).getEtat());
 		}

@@ -20,7 +20,7 @@ public class Booking {
     private Boolean delay;
 	
 	@Column
-	private Integer recall;
+	private int recall;
 
 	@Column(nullable=false)
     private Boolean rendering;
@@ -40,7 +40,7 @@ public class Booking {
 	@Override
 	public String toString() {
 		return "Booking [id=" + id + ", booking_date=" + booking_date + ", delay=" + delay + ", recall=" + recall
-				+ "]";
+				+ ", rendering=" + rendering + "]";
 	}
 	
 	public Long getId() {

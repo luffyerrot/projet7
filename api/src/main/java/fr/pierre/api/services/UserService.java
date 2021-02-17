@@ -48,7 +48,7 @@ public class UserService {
 	     
 	    String result = restTemplate.getForObject(uri, String.class);
 	    JSONArray arrayJson = new JSONArray(result);
-	    List<User> users = new ArrayList();
+	    List<User> users = new ArrayList<>();
 	    for (int i = 0; i < arrayJson.length(); i++){
 	    	JSONObject json = new JSONObject(arrayJson.get(i).toString());
 	    	users.add(init.toObject(json));

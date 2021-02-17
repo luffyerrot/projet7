@@ -58,7 +58,7 @@ public class BookingService {
 		    String result = restTemplate.getForObject(uri, String.class);
 			JSONArray jsonArray = new JSONArray(result);
 			
-			List<Booking> bookings = new ArrayList();
+			List<Booking> bookings = new ArrayList<>();
 			for (int i = 0; i < jsonArray.length(); i++) {
 				JSONObject json = jsonArray.getJSONObject(i);
 				Booking booking;
@@ -81,7 +81,7 @@ public class BookingService {
 	     
 	    String result = restTemplate.getForObject(uri, String.class);
 	    JSONArray arrayJson = new JSONArray(result);
-	    List<Booking> bookings = new ArrayList();
+	    List<Booking> bookings = new ArrayList<>();
 	    for (int i = 0; i < arrayJson.length(); i++){
 	    	JSONObject json = new JSONObject(arrayJson.get(i).toString());
 	    	try {
@@ -115,7 +115,7 @@ public class BookingService {
 		final String uriBooking = environment.getRequiredProperty("booking.url") + "userid/" + userAuth().getId();
 		String resultBooking = restTemplate.getForObject(uriBooking, String.class);
 		JSONArray jsonBooking = new JSONArray(resultBooking);
-		List<Long> userCopyId = new ArrayList();
+		List<Long> userCopyId = new ArrayList<>();
 		for (Object o: jsonBooking) {
 			Long idCopy = ((JSONObject)o).getJSONObject("copy").getLong("id");
 			userCopyId.add(idCopy);
@@ -131,7 +131,7 @@ public class BookingService {
 		
 		String resultBooking = restTemplate.getForObject(uriBooking, String.class);
 		JSONArray jsonB = new JSONArray(resultBooking);
-		List<Long> userCopyId = new ArrayList();
+		List<Long> userCopyId = new ArrayList<>();
 		for (Object o: jsonB) {
 			Long idCopy = ((JSONObject)o).getJSONObject("copy").getLong("id");
 			userCopyId.add(idCopy);

@@ -11,7 +11,7 @@ public class InitUser {
 	public User toObject(JSONObject json) {
 		User user = new User();
 		user.setBookings(null);
-		List<Role> roles = new ArrayList();
+		List<Role> roles = new ArrayList<>();
 		JSONArray jsonArray = (JSONArray)json.get("roles");
 		for (Object o : jsonArray) {
 			Long id = ((JSONObject)o).getLong("id");

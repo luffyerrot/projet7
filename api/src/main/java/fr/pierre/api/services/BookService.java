@@ -47,7 +47,7 @@ public class BookService {
 	    
 	    String result = restTemplate.getForObject(uri, String.class);
 	    JSONArray arrayJson = new JSONArray(result);
-	    List<Book> books = new ArrayList();
+	    List<Book> books = new ArrayList<>();
 	    for (int i = 0; i < arrayJson.length(); i++){
 	    	JSONObject json = new JSONObject(arrayJson.get(i).toString());
 	    	try {

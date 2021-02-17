@@ -44,7 +44,7 @@ public class BookingController {
 		List<Booking> bookingByUserId = bookingService.getByUserId(id);
 		if (bookingByUserId != null) {
 			bookingByUserId.forEach(booking->booking.setCopy(new Copy(booking.getCopy().getId(), booking.getCopy().getEtat(), booking.getCopy().getBook().getAuthor(), booking.getCopy().getBook().getPublisher(), booking.getCopy().getBook().getTitle(), booking.getCopy().getBook().getIbn())));
-			bookingByUserId.forEach(booking->booking.setUser(null));
+			bookingByUserId.forEach(booking->booking.setUser(new User(booking.getUser().getId(), booking.getUser().getEmail(), booking.getUser().getUsername())));
 			return ResponseEntity.ok(bookingByUserId);
 		}
 		return ResponseEntity.notFound().build();
@@ -62,6 +62,15 @@ public class BookingController {
 			return ResponseEntity.ok(bookingService.save(bookingById));
 		}
 		return ResponseEntity.notFound().build();
+	}
+	
+	@PostMapping("/updateRecall/{id}")
+	public void updateRecall(@PathVariable Long id, @RequestBody Booking booking) {
+		Booking bookingById = bookingService.getById(id);
+		if (bookingById != null && booking.getId() == bookingById.getId()) {
+			bookingById.setRecall(booking.getRecall());
+			bookingService.save(bookingById);
+		}
 	}
 	
 	@DeleteMapping("/delete/{id}")

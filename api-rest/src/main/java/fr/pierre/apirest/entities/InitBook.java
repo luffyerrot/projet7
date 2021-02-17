@@ -15,7 +15,7 @@ public class InitBook {
 	public Book toObject(JSONObject json) throws ParseException, JSONException {
 		Book book = new Book();
 		JSONArray jsonA = json.getJSONArray("copies");
-		List<Copy> copies = new ArrayList();
+		List<Copy> copies = new ArrayList<>();
 		for (Object o : jsonA) {
 			Long id = ((JSONObject)o).getLong("id");
 			String etat = ((JSONObject)o).getString("etat");

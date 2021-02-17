@@ -12,10 +12,11 @@ public class InitBooking {
 	public Booking toObject(JSONObject json) throws ParseException, JSONException {
 		Booking booking = new Booking();
 		JSONObject jsonC = json.getJSONObject("copy");
+		JSONObject jsonU = json.getJSONObject("user");
 		JSONObject jsonB = jsonC.getJSONObject("book");
 		booking.setCopy(new Copy(jsonC.getLong("id"), jsonC.getString("etat")));
 		booking.getCopy().setBook(new Book(jsonB.getLong("ibn"), jsonB.getString("title"), jsonB.getString("author"), jsonB.getString("publisher")));
-		booking.setUser(null);
+		booking.setUser(new User (jsonU.getLong("id"), jsonU.getString("email"), jsonU.getString("username")));
 		booking.setId(json.getLong("id"));
 		String date = json.getString("booking_date").substring(0, 10);
 		Date date1;

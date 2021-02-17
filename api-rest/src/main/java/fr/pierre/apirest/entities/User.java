@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "users")
 public class User implements Serializable {

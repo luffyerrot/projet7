@@ -40,7 +40,7 @@ public class CopyService {
 	     
 	    String result = restTemplate.getForObject(uri, String.class);
 	    JSONArray arrayJson = new JSONArray(result);
-	    List<Copy> copies = new ArrayList();
+	    List<Copy> copies = new ArrayList<>();
 	    for (int i = 0; i < arrayJson.length(); i++){
 	    	JSONObject json = new JSONObject(arrayJson.get(i).toString());
 	    	copies.add(init.toObject(json));
