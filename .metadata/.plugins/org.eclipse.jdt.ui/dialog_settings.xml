@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
-	<item key="org.eclipse.jdt.ui.last.external.project" value="C:\Users\Pierre\Desktop\Projet 7\api"/>
+	<item key="org.eclipse.jdt.ui.last.external.project" value="C:\Users\Pierre\Desktop\jdr\appli"/>
 	<item key="org.eclipse.jdt.ui.lastextjar" value="C:\Users\Pierre\Desktop\Projet 7\api\libs"/>
 	<section name="org.eclipse.jdt.internal.ui.packageview.PackageExplorerPart">
 		<item key="group_libraries" value="true"/>
@@ -158,5 +158,7 @@
 	</section>
 	<section name="BuildPathsPropertyPage">
 		<item key="pageIndex" value="3"/>
+	</section>
+	<section name="BreadcrumbItemDropDown">
 	</section>
 </section>

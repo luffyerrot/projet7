@@ -1,21 +1,20 @@
 package fr.pierre.batch.processor;
 
 import org.springframework.batch.item.ItemProcessor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.mail.javamail.JavaMailSender;
 
 import fr.pierre.apirest.entities.Booking;
+import fr.pierre.batch.config.MailConfiguration;
 
 public class BookingProcessor implements ItemProcessor<Booking, Booking> {
-	
-	@Autowired
-	JavaMailSenderImpl emailSender;
+
+    JavaMailSender sender = MailConfiguration.getJavaMailSender();
 	
 	@Override
 	public Booking process(final Booking bookingInput) throws Exception {
 		
-		if(bookingInput.getRecall() < 8) {
+		if(bookingInput.getRecall() < 2) {
 			Booking bookingOutput = null;
 			bookingOutput = new Booking();
 			
@@ -29,7 +28,6 @@ public class BookingProcessor implements ItemProcessor<Booking, Booking> {
 
 			sendEmailToUser(bookingInput.getUser().getEmail(), bookingInput.getCopy().getBook().getTitle());
 
-			System.out.println("-------------------p " + bookingOutput);
 			return bookingOutput;
 		} else {
 			return bookingInput;
@@ -39,15 +37,11 @@ public class BookingProcessor implements ItemProcessor<Booking, Booking> {
 	private void sendEmailToUser(String email, String title) {
 
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("redonne@alabiblio.depeche");
+        message.setFrom("no-reply@projet7.com");
         message.setTo(email);
         message.setSubject("Rendering book named : " + title.toString());
         message.setText("Hello, You have received this automated email to warn you that the rental date has passed.");
         
-        if (this.emailSender != null) {
-            this.emailSender.send(message);
-        } else {
-        	System.out.println("Erreur lors de la configuration du mail");
-        }
+        this.sender.send(message);
 	}
 }

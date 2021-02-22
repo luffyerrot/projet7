@@ -80,7 +80,6 @@ public class BookingService {
 		List<Booking> bookings = bookingRepository.findAll();
 		bookings.forEach(b -> b.setUser(null));
 		bookings.forEach(booking->booking.setCopy(new Copy(booking.getCopy().getId(), booking.getCopy().getEtat(), booking.getCopy().getBook().getAuthor(), booking.getCopy().getBook().getPublisher(), booking.getCopy().getBook().getTitle(), booking.getCopy().getBook().getIbn())));
-		
 		this.logger.debug("findAll Return = " + bookings);
 		return bookings;
 	}

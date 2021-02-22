@@ -19,8 +19,8 @@ public class BookingReader implements ItemReader<Booking>{
 	
 	private InitBooking init = new InitBooking();
 	
-	private int nextBookingIndex;
-	private List<Booking> bookingData;
+	private int nextBookingIndex = 0;
+	private List<Booking> bookingData = null;
 
 	@Override
 	public Booking read() throws Exception, UnexpectedInputException, ParseException, NonTransientResourceException {			
@@ -36,9 +36,9 @@ public class BookingReader implements ItemReader<Booking>{
 	        	nextBookingIndex++;
 	        } else {
 	        	nextBookingIndex = 0;
+	        	bookingData = null;
 	        }
 
-			System.out.println("-------------------r " + nextBooking);
 	        return nextBooking;
 	}
 

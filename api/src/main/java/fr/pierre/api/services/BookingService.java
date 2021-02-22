@@ -152,7 +152,7 @@ public class BookingService {
 		Date date = new Date();
 		Calendar c = Calendar.getInstance();
 		c.setTime(date);
-		c.add(Calendar.DATE, -15);
+		/**c.add(Calendar.DATE, -15);**/
 		date = c.getTime();
 		
 		booking.setBooking_date(date);
