@@ -123,8 +123,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "book",
@@ -254,8 +253,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "booking",
@@ -295,7 +293,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"booking_date\": \"1820-04-16 15:43:22\",\r\n    \"delay\": \"true\",\r\n    \"rendering\": \"false\",\r\n    \"copy_id\": \"1\",\r\n    \"user_id\": \"1\"\r\n}",
+							"raw": "{\r\n    \"id\": \"2\",\r\n    \"booking_date\": \"1820-04-16 15:43:22\",\r\n    \"delay\": \"true\",\r\n    \"recall\": \"12\",\r\n    \"copy_id\": \"1\",\r\n    \"user_id\": \"1\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -373,9 +371,47 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "bookingGetDate",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/booking/getdate",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"booking",
+								"getdate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "bookingGetByUserId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/booking/userid/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"booking",
+								"userid",
+								"1"
+							]
+						}
+					},
+					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "copy",
@@ -387,7 +423,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"available\": \"14\",\r\n    \"book_ibn\": \"1\"\r\n}",
+							"raw": "{\r\n    \"available\": \"14\",\r\n    \"book_ibn\": \"4\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -494,9 +530,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }
