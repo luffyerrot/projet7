@@ -1,13 +1,14 @@
 package fr.pierre.apirest;
 
 import org.junit.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
-class ApiRestApplicationTests {
+public class ApiRestApplicationTests {
 
+	public ApiRestApplicationTests() {
+	}
+	
 	@Test
-	void contextLoads() {
+	public void contextLoads() {
 	}
 
 }

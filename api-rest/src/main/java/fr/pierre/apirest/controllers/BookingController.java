@@ -86,4 +86,13 @@ public class BookingController {
 		bookingByDateAndDelay.forEach(booking->booking.setUser(new User(booking.getUser().getId(), booking.getUser().getEmail(), booking.getUser().getUsername())));
 		return ResponseEntity.ok(bookingByDateAndDelay);
 	}
+	
+	@PutMapping("/extend/{id}")
+	public void extend(@PathVariable Long id) {
+		Booking booking = bookingService.getById(id);
+		if (booking.getDelay() == false) {
+			bookingService.changeDelay(booking, true);
+			bookingService.extend(booking);
+		}
+	}
 }

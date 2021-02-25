@@ -1,5 +1,6 @@
 package fr.pierre.apirest.services;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -58,14 +59,24 @@ public class BookingService {
 		return bookings;
 	}
 	
-	public void changeDelay(Copy copy, Boolean delay) {
-		this.logger.info("changeDelay Call = " + copy.toString() + " " + delay);
-		bookingRepository.changeDelay(copy, delay);
+	public void changeDelay(Booking booking, Boolean delay) {
+		this.logger.info("changeDelay Call = " + booking + " " + delay);
+		bookingRepository.changeDelay(booking.getId(), delay);
 	}
 	
 	public void deleteById(Long idBooking) {
 		this.logger.info("deleteById Call = " + idBooking);
 		bookingRepository.deleteById(idBooking);
+	}
+	
+	public void extend(Booking booking) {
+		this.logger.info("extend Call = " + booking.toString());
+		Date date = booking.getBooking_date();
+		Calendar c = Calendar.getInstance();
+		c.setTime(date);
+		c.add(Calendar.DATE, + 30);
+		date = c.getTime();
+		bookingRepository.extend(booking.getId(), date);
 	}
 	
 	public Boolean checkAcces(Long idBooking) {
@@ -85,7 +96,12 @@ public class BookingService {
 	}
 	
 	public List<Booking> findAllByDate() {
-		List<Booking> bookings = bookingRepository.getByDate(new Date());
+		Date date = new Date();
+		Calendar c = Calendar.getInstance();
+		c.setTime(date);
+		c.add(Calendar.DATE, -30);
+		date = c.getTime();
+		List<Booking> bookings = bookingRepository.getByDate(date);
 		return bookings;
 	}
 }

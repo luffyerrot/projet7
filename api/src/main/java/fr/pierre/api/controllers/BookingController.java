@@ -3,6 +3,7 @@ package fr.pierre.api.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -11,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import fr.pierre.api.services.BookService;
 import fr.pierre.api.services.BookingService;
 import fr.pierre.api.services.UserService;
+import fr.pierre.apirest.entities.User;
 
 @Controller
 @RequestMapping(value = "/booking")
@@ -41,6 +43,13 @@ public class BookingController {
 		if (!serviceBooking.userBookingCopyId().contains(id)) {
 			serviceBooking.create(id);
 		}
+	    return new ModelAndView("redirect:/", model);
+	}
+	
+	@RequestMapping(value = "/extend", method = RequestMethod.GET)
+	public ModelAndView extend(ModelMap model, @RequestParam(name="id", required = true)Long id, @ModelAttribute("user") User user) {
+		serviceBooking.extend(id);
+	    model.addAttribute("bookings", serviceBooking.getByUserId());
 	    return new ModelAndView("redirect:/", model);
 	}
 }

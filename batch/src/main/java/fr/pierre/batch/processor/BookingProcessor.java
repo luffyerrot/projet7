@@ -14,7 +14,7 @@ public class BookingProcessor implements ItemProcessor<Booking, Booking> {
 	@Override
 	public Booking process(final Booking bookingInput) throws Exception {
 		
-		if(bookingInput.getRecall() < 2) {
+		if(bookingInput.getRecall() < 8) {
 			Booking bookingOutput = null;
 			bookingOutput = new Booking();
 			

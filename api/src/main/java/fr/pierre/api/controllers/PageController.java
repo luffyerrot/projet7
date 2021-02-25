@@ -1,5 +1,7 @@
 package fr.pierre.api.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -10,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import fr.pierre.api.services.BookingService;
 import fr.pierre.api.services.UserService;
+import fr.pierre.apirest.entities.Booking;
 import fr.pierre.apirest.entities.User;
 
 @Controller
@@ -22,7 +25,11 @@ public class PageController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView home(ModelMap model) {
-	    model.addAttribute("bookings", serviceBooking.getByUserId());
+		List<Booking> bookings = serviceBooking.getByUserId();
+		for (int i = 0; i < bookings.size(); i++) {
+			System.out.println("-----------------" + bookings.get(i).getDelay());
+		}
+	    model.addAttribute("bookings", bookings);
 	    return new ModelAndView("home", model);
 	}
 	
@@ -34,6 +41,7 @@ public class PageController {
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public ModelAndView create(ModelMap model, @ModelAttribute("user") User user) {
 		serviceUser.create(user);
+	    model.addAttribute("bookings", serviceBooking.getByUserId());
 	    return new ModelAndView("redirect:/", model);
 	}
 }

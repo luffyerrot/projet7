@@ -61,7 +61,7 @@ public class BookingService {
 			List<Booking> bookings = new ArrayList<>();
 			for (int i = 0; i < jsonArray.length(); i++) {
 				JSONObject json = jsonArray.getJSONObject(i);
-				Booking booking;
+				Booking booking = null;
 				try {
 					booking = init.toObject(json);
 					bookings.add(booking);
@@ -112,7 +112,7 @@ public class BookingService {
 	
 	public List<Long> userBookingCopyId() {
 
-		final String uriBooking = environment.getRequiredProperty("booking.url") + "userid/" + userAuth().getId();
+		final String uriBooking = environment.getRequiredProperty("booking.url");
 		String resultBooking = restTemplate.getForObject(uriBooking, String.class);
 		JSONArray jsonBooking = new JSONArray(resultBooking);
 		List<Long> userCopyId = new ArrayList<>();
@@ -152,7 +152,7 @@ public class BookingService {
 		Date date = new Date();
 		Calendar c = Calendar.getInstance();
 		c.setTime(date);
-		/**c.add(Calendar.DATE, -15);**/
+		/**c.add(Calendar.DATE, -30);**/
 		date = c.getTime();
 		
 		booking.setBooking_date(date);
@@ -181,5 +181,12 @@ public class BookingService {
 	{
 		final String uri = environment.getRequiredProperty("booking.url") + "delete/" + id;
 		restTemplate.delete(uri);
+	}
+	
+
+	public void extend(Long id)
+	{
+		final String uri = environment.getRequiredProperty("booking.url") + "extend/" + id;
+		restTemplate.put(uri, null);
 	}
 }

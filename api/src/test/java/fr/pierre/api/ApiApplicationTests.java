@@ -1,13 +1,14 @@
 package fr.pierre.api;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
-class ApiApplicationTests {
+public class ApiApplicationTests {
 
+	public ApiApplicationTests() {
+	}
+	
 	@Test
-	void contextLoads() {
+	public void contextLoads() {
 	}
 
 }
