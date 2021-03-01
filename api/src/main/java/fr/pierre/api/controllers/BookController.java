@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import fr.pierre.api.services.BookService;
-import fr.pierre.apirest.entities.Book;
+import fr.pierre.api.services.CopyService;
+import fr.pierre.api.entities.Book;
 
 @Controller
 @RequestMapping(value = "/book")
@@ -18,6 +19,8 @@ public class BookController {
 	
 	@Autowired
 	public BookService serviceBook;
+	@Autowired
+	public CopyService serviceCopy;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView getBookByIbn(ModelMap model) {
@@ -57,15 +60,36 @@ public class BookController {
 	
 	@RequestMapping(value = "/admin/update", method = RequestMethod.POST)
 	public ModelAndView update(ModelMap model, @ModelAttribute("book") Book book) {
+		Book bookNotChange = serviceBook.getBookByIbn(book.getIbn());
+		book.setCopies(bookNotChange.getCopies());
+		book.setRelease_date(bookNotChange.getRelease_date());
 		serviceBook.update(book, book.getIbn());
 	    model.addAttribute("books", serviceBook.getAllBook());
 	    return new ModelAndView("redirect:/book/", model);
 	}
 	
-	@RequestMapping(value = "/admin/delete", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/delete", method = RequestMethod.GET)
 	public ModelAndView delete(ModelMap model, @RequestParam(name="ibn", required = true) Long ibn) {
+		Book book = serviceBook.getBookByIbn(ibn);
+		for (int i =0; i < book.getCopies().size(); i++) {
+			serviceCopy.delete(book.getCopies().get(i).getId());
+		}
 		serviceBook.delete(ibn);
 	    model.addAttribute("books", serviceBook.getAllBook());
 	    return new ModelAndView("redirect:/book/", model);
+	}
+	
+	@RequestMapping(value = "/search", method = RequestMethod.GET)
+	public ModelAndView search(ModelMap model, @RequestParam(name="author", required = true) String author, @RequestParam(name="title", required = true) String title) {
+		if (!author.isEmpty() && !title.isEmpty()) {
+		    model.addAttribute("books", serviceBook.getByAuthorAndTitle(author, title));
+		} else if (!author.isEmpty()) {
+		    model.addAttribute("books", serviceBook.getByAuthor(author));
+		} else if (!title.isEmpty()) {
+		    model.addAttribute("books", serviceBook.getByTitle(title));
+		} else {
+			model.addAttribute("books", serviceBook.getAllBook());
+		}
+	    return new ModelAndView("book/home", model);
 	}
 }

@@ -4,7 +4,7 @@ import org.springframework.batch.item.ItemProcessor;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 
-import fr.pierre.apirest.entities.Booking;
+import fr.pierre.batch.entities.Booking;
 import fr.pierre.batch.config.MailConfiguration;
 
 public class BookingProcessor implements ItemProcessor<Booking, Booking> {

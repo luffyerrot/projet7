@@ -10,8 +10,8 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import fr.pierre.apirest.entities.InitUser;
-import fr.pierre.apirest.entities.User;
+import fr.pierre.api.entities.InitUser;
+import fr.pierre.api.entities.User;
 
 @Service
 public class UserService {

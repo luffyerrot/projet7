@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.web.client.RestTemplate;
 
-import fr.pierre.apirest.entities.Booking;
+import fr.pierre.batch.entities.Booking;
 
 public class BookingWriter implements ItemWriter<Booking>{
 	

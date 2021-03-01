@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import fr.pierre.apirest.entities.Booking;
+import fr.pierre.batch.entities.Booking;
 import fr.pierre.batch.processor.BookingProcessor;
 import fr.pierre.batch.reader.BookingReader;
 import fr.pierre.batch.writer.BookingWriter;

@@ -19,7 +19,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 								<tr>
 									<th scope="col">titre</th>
 									<th scope="col">auteur</th>
-									<th scope="col">Date de rendu</th>
+									<th scope="col">date d'emprunt</th>
 									<th scope="col">Delai</th>
 									<th scope="col">Etendre</th>
 								</tr>
@@ -34,12 +34,6 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 							    </tr>
 							</table>
 						</div>
-						<br>
-						<div sec:authorize="isAuthenticated()">
-							<a th:href="@{/user/detail}" class="btn btn-outline-secondary">Détails</a>
-							<br/><br/>
-						</div>
-						<br/>
 					</div>
 				</div>
 			</div>

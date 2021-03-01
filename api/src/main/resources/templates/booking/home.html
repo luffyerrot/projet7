@@ -29,6 +29,10 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 							</td>
 					    </tr>
 					</table>
+					<br/>
+					<div sec:authorize="hasRole('ROLE_ADMIN')">
+						<a th:href="@{/booking/admin}"  class="btn btn-outline-info" id="link">Toute les reservations</a>
+					</div>
 					</div>
 				</div>
 			</div>

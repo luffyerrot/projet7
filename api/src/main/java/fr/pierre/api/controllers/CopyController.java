@@ -11,7 +11,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import fr.pierre.api.services.BookService;
 import fr.pierre.api.services.CopyService;
-import fr.pierre.apirest.entities.Copy;
+import fr.pierre.api.entities.Book;
+import fr.pierre.api.entities.Copy;
 
 @Controller
 @RequestMapping(value = "/copy")
@@ -44,8 +45,9 @@ public class CopyController {
 	
 	@RequestMapping(value = "/admin/update", method = RequestMethod.POST)
 	public ModelAndView update(ModelMap model, @ModelAttribute("copy") Copy copy, @RequestParam(name="ibn", required = true) Long ibn) {
+		Book book = serviceBook.getBookByIbn(ibn);
+		copy.setBook(book);
 		serviceCopy.update(copy, copy.getId());
-		model.addAttribute("book", serviceBook.getBookByIbn(ibn));
 	    return new ModelAndView("redirect:/book/detail?ibn=" + ibn, model);
 	}
 	

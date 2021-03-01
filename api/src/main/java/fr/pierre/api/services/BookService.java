@@ -14,8 +14,8 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import fr.pierre.apirest.entities.Book;
-import fr.pierre.apirest.entities.InitBook;
+import fr.pierre.api.entities.Book;
+import fr.pierre.api.entities.InitBook;
 
 @Service
 public class BookService {
@@ -59,6 +59,60 @@ public class BookService {
 	    return books;
 	}
 	
+	public List<Book> getByAuthorAndTitle(String author, String title)
+	{	     
+	    final String uri = environement.getRequiredProperty("book.url") + "/authorandtitle/" + author + "/" + title;
+	    
+	    String result = restTemplate.getForObject(uri, String.class);
+	    JSONArray arrayJson = new JSONArray(result);
+	    List<Book> books = new ArrayList<>();
+	    for (int i = 0; i < arrayJson.length(); i++){
+	    	JSONObject json = new JSONObject(arrayJson.get(i).toString());
+	    	try {
+		    	books.add(init.toObject(json));
+			} catch (ParseException | JSONException e) {
+				e.printStackTrace();
+			}
+	    }
+	    return books;
+	}
+	
+	public List<Book> getByAuthor(String author)
+	{	     
+	    final String uri = environement.getRequiredProperty("book.url") + "/author/" + author;
+	    
+	    String result = restTemplate.getForObject(uri, String.class);
+	    JSONArray arrayJson = new JSONArray(result);
+	    List<Book> books = new ArrayList<>();
+	    for (int i = 0; i < arrayJson.length(); i++){
+	    	JSONObject json = new JSONObject(arrayJson.get(i).toString());
+	    	try {
+		    	books.add(init.toObject(json));
+			} catch (ParseException | JSONException e) {
+				e.printStackTrace();
+			}
+	    }
+	    return books;
+	}
+	
+	public List<Book> getByTitle(String title)
+	{	     
+	    final String uri = environement.getRequiredProperty("book.url") + "/title/" + title;
+	    
+	    String result = restTemplate.getForObject(uri, String.class, title);
+	    JSONArray arrayJson = new JSONArray(result);
+	    List<Book> books = new ArrayList<>();
+	    for (int i = 0; i < arrayJson.length(); i++){
+	    	JSONObject json = new JSONObject(arrayJson.get(i).toString());
+	    	try {
+		    	books.add(init.toObject(json));
+			} catch (ParseException | JSONException e) {
+				e.printStackTrace();
+			}
+	    }
+	    return books;
+	}
+	
 	public void create(Book book, String date)
 	{
 		final String uri = environement.getRequiredProperty("book.url") + "save";
@@ -71,18 +125,10 @@ public class BookService {
 		restTemplate.put(uri, book);
 	}
 	
-	public Book update(Book book, Long ibn)
+	public void update(Book book, Long ibn)
 	{
 		final String uri = environement.getRequiredProperty("book.url") + "update/" + ibn;
-		String result = restTemplate.postForObject(uri, book, String.class);
-		JSONObject json = new JSONObject(result);
-		Book book1 = null;
-	    try {
-			book1 = init.toObject(json);
-		} catch (ParseException | JSONException e) {
-			e.printStackTrace();
-		}
-	    return book1;
+		restTemplate.postForObject(uri, book, String.class);
 	}
 	
 	public void delete(Long ibn)

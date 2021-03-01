@@ -66,7 +66,7 @@ public class BookController {
 	public ResponseEntity<Book> updateBook(@PathVariable Long ibn, @RequestBody Book book) {
 		Book bookByIbn = bookService.getByIbn(ibn);
 		if (bookByIbn != null && book.getIbn() == bookByIbn.getIbn()) {
-			return ResponseEntity.ok(bookService.save(bookByIbn));
+			return ResponseEntity.ok(bookService.save(book));
 		}
 		return ResponseEntity.notFound().build();
 	}
@@ -75,5 +75,53 @@ public class BookController {
 	public ResponseEntity<Void> deleteBook(@PathVariable Long ibn) {
 		bookService.delete(ibn);
 		return ResponseEntity.ok().build();
+	}
+	
+	@GetMapping("/authorandtitle/{author}/{title}")
+	public ResponseEntity<List<Book>> getByAuthorAndTitle(@PathVariable String author, @PathVariable String title) {
+
+		List<Book> books = bookService.getByAuthorAndTitle(author, title);
+		if (books != null) {
+			for (int i = 0; i < books.size(); i++) {
+				for (int j = 0; j < books.get(i).getCopies().size(); j++) {
+					books.get(i).getCopies().get(j).setBook(null);
+					books.get(i).getCopies().get(j).setBookings(null);
+				}
+			}
+			return ResponseEntity.ok(books);
+		}
+		return ResponseEntity.notFound().build();
+	}
+	
+	@GetMapping("/author/{author}")
+	public ResponseEntity<List<Book>> getByAuthor(@PathVariable String author) {
+
+		List<Book> books = bookService.getByAuthor(author);
+		if (books != null) {
+			for (int i = 0; i < books.size(); i++) {
+				for (int j = 0; j < books.get(i).getCopies().size(); j++) {
+					books.get(i).getCopies().get(j).setBook(null);
+					books.get(i).getCopies().get(j).setBookings(null);
+				}
+			}
+			return ResponseEntity.ok(books);
+		}
+		return ResponseEntity.notFound().build();
+	}
+	
+	@GetMapping("/title/{id}")
+	public ResponseEntity<List<Book>> getByTitle(@PathVariable String id) {
+
+		List<Book> books = bookService.getByTitle(id);
+		if (books != null) {
+			for (int i = 0; i < books.size(); i++) {
+				for (int j = 0; j < books.get(i).getCopies().size(); j++) {
+					books.get(i).getCopies().get(j).setBook(null);
+					books.get(i).getCopies().get(j).setBookings(null);
+				}
+			}
+			return ResponseEntity.ok(books);
+		}
+		return ResponseEntity.notFound().build();
 	}
 }

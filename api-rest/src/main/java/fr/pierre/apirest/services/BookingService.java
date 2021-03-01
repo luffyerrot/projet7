@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import fr.pierre.apirest.entities.Booking;
 import fr.pierre.apirest.entities.Copy;
+import fr.pierre.apirest.entities.User;
 import fr.pierre.apirest.repositories.BookingRepository;
 
 @Service
@@ -33,7 +34,7 @@ public class BookingService {
 	
 	public List<Booking> getByUserId(Long id) {
 		this.logger.info("getByUserId Call = " + id);
-		List<Booking> bookings = bookingRepository.findByUserId(id);
+		List<Booking> bookings = bookingRepository.findByUserIdAndRendering(id, false);
 		this.logger.info("getByUserId Return = " + bookings);
 		return bookings;
 	}
@@ -63,6 +64,11 @@ public class BookingService {
 		this.logger.info("changeDelay Call = " + booking + " " + delay);
 		bookingRepository.changeDelay(booking.getId(), delay);
 	}
+
+	public void changeRendering(Booking booking, Boolean rendering) {
+		this.logger.info("changeRendering Call = " + booking + " " + rendering);
+		bookingRepository.changeRendering(booking.getId(), rendering);
+	}
 	
 	public void deleteById(Long idBooking) {
 		this.logger.info("deleteById Call = " + idBooking);
@@ -87,9 +93,17 @@ public class BookingService {
 		}
 	}
 
-	public List<Booking> findAll() {
-		List<Booking> bookings = bookingRepository.findAll();
-		bookings.forEach(b -> b.setUser(null));
+	public List<Booking> findAllNotRendered() {
+		List<Booking> bookings = bookingRepository.findByRendering(false);
+		bookings.forEach(b -> b.setUser(new User(b.getUser().getId(), b.getUser().getEmail(), b.getUser().getUsername())));
+		bookings.forEach(booking->booking.setCopy(new Copy(booking.getCopy().getId(), booking.getCopy().getEtat(), booking.getCopy().getBook().getAuthor(), booking.getCopy().getBook().getPublisher(), booking.getCopy().getBook().getTitle(), booking.getCopy().getBook().getIbn())));
+		this.logger.debug("findAll Return = " + bookings);
+		return bookings;
+	}
+	
+	public List<Booking> findAllRendered() {
+		List<Booking> bookings = bookingRepository.findByRendering(true);
+		bookings.forEach(b -> b.setUser(new User(b.getUser().getId(), b.getUser().getEmail(), b.getUser().getUsername())));
 		bookings.forEach(booking->booking.setCopy(new Copy(booking.getCopy().getId(), booking.getCopy().getEtat(), booking.getCopy().getBook().getAuthor(), booking.getCopy().getBook().getPublisher(), booking.getCopy().getBook().getTitle(), booking.getCopy().getBook().getIbn())));
 		this.logger.debug("findAll Return = " + bookings);
 		return bookings;

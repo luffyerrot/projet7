@@ -12,8 +12,8 @@ import org.springframework.batch.item.ParseException;
 import org.springframework.batch.item.UnexpectedInputException;
 import org.springframework.web.client.RestTemplate;
 
-import fr.pierre.apirest.entities.Booking;
-import fr.pierre.apirest.entities.InitBooking;
+import fr.pierre.batch.entities.Booking;
+import fr.pierre.batch.entities.InitBooking;
 
 public class BookingReader implements ItemReader<Booking>{
 	

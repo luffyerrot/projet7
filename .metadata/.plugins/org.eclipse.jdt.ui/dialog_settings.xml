@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<item key="org.eclipse.jdt.ui.last.external.project" value="C:\Users\Pierre\Desktop\jdr\appli"/>
-	<item key="org.eclipse.jdt.ui.lastextjar" value="C:\Users\Pierre\Desktop\Projet 7\api\libs"/>
+	<item key="org.eclipse.jdt.ui.lastextjar" value="C:\Users\Pierre\Desktop\Projet 7\libs"/>
 	<section name="org.eclipse.jdt.internal.ui.packageview.PackageExplorerPart">
 		<item key="group_libraries" value="true"/>
 		<item key="layout" value="1"/>
@@ -143,7 +143,7 @@
 		</section>
 	</section>
 	<section name="ClasspathContainerSelectionPage">
-		<item key="index" value="0"/>
+		<item key="index" value="5"/>
 	</section>
 	<section name="ProblemSeveritiesConfigurationBlock">
 		<item key="expanded0" value="false"/>

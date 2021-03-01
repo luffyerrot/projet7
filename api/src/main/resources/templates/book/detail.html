@@ -46,8 +46,8 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 					        <td th:text="${cStat.index} + 1">...</td>
 					        <td th:text="${copie?.etat}">...</td>
 					        <td th:text="${copie?.id}">...</td>
-							<td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/copy/admin/update(id = ${copie.id})}"  class="btn btn-outline-secondary" id="link">Modifier</a></td>
-							<td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/copy/admin/delete(id = ${copie.id})}"  class="btn btn-outline-secondary" id="link">Supprimer</a></td>
+							<td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/copy/admin/update(id = ${copie.id},ibn = ${book.ibn})}"  class="btn btn-outline-secondary" id="link">Modifier</a></td>
+							<td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/copy/admin/delete(id = ${copie.id},ibn = ${book.ibn})}"  class="btn btn-outline-secondary" id="link">Supprimer</a></td>
 					    </tr>
 					</table>
 					<br/>

@@ -10,9 +10,9 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import fr.pierre.apirest.entities.Book;
-import fr.pierre.apirest.entities.Copy;
-import fr.pierre.apirest.entities.InitCopy;
+import fr.pierre.api.entities.Book;
+import fr.pierre.api.entities.Copy;
+import fr.pierre.api.entities.InitCopy;
 
 @Service
 public class CopyService {
@@ -55,14 +55,10 @@ public class CopyService {
 		restTemplate.put(uri, copy);
 	}
 	
-	public Copy update(Copy copy, Long id)
+	public void update(Copy copy, Long id)
 	{
 		final String uri = environment.getRequiredProperty("copy.url") + "update/" + id;
-		String result = restTemplate.postForObject(uri, copy, String.class);
-		JSONObject json = new JSONObject(result);
-		Copy copy1 = null;
-		copy1 = init.toObject(json);
-	    return copy1;
+		restTemplate.postForObject(uri, copy, String.class);
 	}
 	
 	public void delete(Long id)

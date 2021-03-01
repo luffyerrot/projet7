@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import fr.pierre.api.services.BookService;
 import fr.pierre.api.services.BookingService;
 import fr.pierre.api.services.UserService;
-import fr.pierre.apirest.entities.User;
+import fr.pierre.api.entities.User;
 
 @Controller
 @RequestMapping(value = "/booking")
@@ -29,6 +29,13 @@ public class BookingController {
 	public ModelAndView getBookByIbn(ModelMap model) {
 	    model.addAttribute("books", serviceBook.getAllBook());
 	    return new ModelAndView("booking/home", model);
+	}
+	
+	@RequestMapping(value = "/admin", method = RequestMethod.GET)
+	public ModelAndView getAllBooking(ModelMap model) {
+	    model.addAttribute("bookings", serviceBooking.getAllBookingNotRendered());
+	    model.addAttribute("bookingshystoriques", serviceBooking.getAllBookingRendered());
+	    return new ModelAndView("booking/adminhome", model);
 	}
 	
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
@@ -51,5 +58,14 @@ public class BookingController {
 		serviceBooking.extend(id);
 	    model.addAttribute("bookings", serviceBooking.getByUserId());
 	    return new ModelAndView("redirect:/", model);
+	}
+	
+
+	@RequestMapping(value = "/admin/rendering", method = RequestMethod.GET)
+	public ModelAndView delete(ModelMap model, @RequestParam(name="id", required = true) Long id) {
+		serviceBooking.changeRendering(id);
+		model.addAttribute("bookings", serviceBooking.getAllBookingNotRendered());
+	    model.addAttribute("bookingshystoriques", serviceBooking.getAllBookingRendered());
+	    return new ModelAndView("redirect:/booking/admin", model);
 	}
 }

@@ -26,8 +26,13 @@ public class BookingController {
 	BookingService bookingService;
 	
 	@GetMapping("/")
-	public ResponseEntity<List<Booking>> getAll() {
-		return ResponseEntity.ok(bookingService.findAll());
+	public ResponseEntity<List<Booking>> getAllNotRendered() {
+		return ResponseEntity.ok(bookingService.findAllNotRendered());
+	}
+	
+	@GetMapping("/rendered")
+	public ResponseEntity<List<Booking>> getAllRendered() {
+		return ResponseEntity.ok(bookingService.findAllRendered());
 	}
 	
 	@GetMapping("/{id}")
@@ -94,5 +99,11 @@ public class BookingController {
 			bookingService.changeDelay(booking, true);
 			bookingService.extend(booking);
 		}
+	}
+	
+	@PutMapping("/rendering/{id}")
+	public void rendering(@PathVariable Long id) {
+		Booking booking = bookingService.getById(id);
+		bookingService.changeRendering(booking, true);
 	}
 }

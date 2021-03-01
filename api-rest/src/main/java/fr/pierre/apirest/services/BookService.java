@@ -1,6 +1,5 @@
 package fr.pierre.apirest.services;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -9,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.pierre.apirest.entities.Book;
-import fr.pierre.apirest.entities.Copy;
 import fr.pierre.apirest.repositories.BookRepository;
 import fr.pierre.apirest.repositories.CopyRepository;
 
@@ -31,11 +29,25 @@ public class BookService {
 		return book;
 	}
 	
+	public List<Book> getByAuthorAndTitle(String author, String title) {
+		this.logger.debug("getByAuthorAndTitle Call = " + author + " " + title);
+		List<Book> books = bookRepository.findByAuthorAndTitle(author, title);
+		this.logger.debug("getByAuthorAndTitle Return = " + books);
+		return books;
+	}
+	
 	public List<Book> getByAuthor(String author) {
 		this.logger.debug("getByAuthor Call = " + author);
-		List<Book> book = bookRepository.findByAuthor(author);
-		this.logger.debug("getByAuthor Return = " + book);
-		return book;
+		List<Book> books = bookRepository.findByAuthor(author);
+		this.logger.debug("getByAuthor Return = " + books);
+		return books;
+	}
+	
+	public List<Book> getByTitle(String title) {
+		this.logger.debug("getByTitle Call = " + title);
+		List<Book> books = bookRepository.findByTitle(title);
+		this.logger.debug("getByTitle Return = " + books);
+		return books;
 	}
 
 	public Book save(Book book) {
@@ -57,18 +69,8 @@ public class BookService {
 	}
 	
 	public Book create(Book book) {
-		List<String> etats = new ArrayList<>();
-		for (int i = 0; i < book.getCopies().size(); i++) {
-			etats.add(book.getCopies().get(i).getEtat());
-		}
 		book.setCopies(null);
 		Book book1 = bookRepository.save(book);
-		for (int j = 0; j < etats.size(); j++) {
-
-			Copy copy = new Copy(etats.get(j));
-			copy.setBook(book);
-			copyRepository.save(copy);
-		}
 		return book1;
 	}
 }

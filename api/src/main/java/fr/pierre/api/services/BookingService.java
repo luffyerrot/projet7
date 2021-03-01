@@ -17,12 +17,12 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import fr.pierre.apirest.entities.Booking;
-import fr.pierre.apirest.entities.Copy;
-import fr.pierre.apirest.entities.InitBooking;
-import fr.pierre.apirest.entities.InitCopy;
-import fr.pierre.apirest.entities.InitUser;
-import fr.pierre.apirest.entities.User;
+import fr.pierre.api.entities.Booking;
+import fr.pierre.api.entities.Copy;
+import fr.pierre.api.entities.InitBooking;
+import fr.pierre.api.entities.InitCopy;
+import fr.pierre.api.entities.InitUser;
+import fr.pierre.api.entities.User;
 
 @Service
 public class BookingService {
@@ -75,9 +75,27 @@ public class BookingService {
 		}
 	}
 	
-	public List<Booking> getAllBooking()
+	public List<Booking> getAllBookingNotRendered()
 	{
 	    final String uri = environment.getRequiredProperty("booking.url");
+	     
+	    String result = restTemplate.getForObject(uri, String.class);
+	    JSONArray arrayJson = new JSONArray(result);
+	    List<Booking> bookings = new ArrayList<>();
+	    for (int i = 0; i < arrayJson.length(); i++){
+	    	JSONObject json = new JSONObject(arrayJson.get(i).toString());
+	    	try {
+				bookings.add(init.toObject(json));
+			} catch (ParseException | JSONException e) {
+				e.printStackTrace();
+			}
+	    }
+	    return bookings;
+	}
+	
+	public List<Booking> getAllBookingRendered()
+	{
+	    final String uri = environment.getRequiredProperty("booking.url") + "/rendered";
 	     
 	    String result = restTemplate.getForObject(uri, String.class);
 	    JSONArray arrayJson = new JSONArray(result);
@@ -152,7 +170,7 @@ public class BookingService {
 		Date date = new Date();
 		Calendar c = Calendar.getInstance();
 		c.setTime(date);
-		/**c.add(Calendar.DATE, -30);**/
+		c.add(Calendar.DATE, -45);
 		date = c.getTime();
 		
 		booking.setBooking_date(date);
@@ -183,10 +201,15 @@ public class BookingService {
 		restTemplate.delete(uri);
 	}
 	
-
 	public void extend(Long id)
 	{
 		final String uri = environment.getRequiredProperty("booking.url") + "extend/" + id;
+		restTemplate.put(uri, null);
+	}
+	
+	public void changeRendering(Long id)
+	{
+		final String uri = environment.getRequiredProperty("booking.url") + "rendering/" + id;
 		restTemplate.put(uri, null);
 	}
 }

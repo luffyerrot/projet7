@@ -11,7 +11,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import fr.pierre.api.services.UserService;
-import fr.pierre.apirest.entities.User;
+import fr.pierre.api.entities.User;
 
 @Service
 public class CustomUserDetailService implements UserDetailsService{
