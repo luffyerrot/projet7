@@ -12,16 +12,16 @@ dans l'invite de commande.
 
 Pour la base de données vous pouvez utiliser les fichiers .SQL dans le fichier nommé __sql__.  
 L'un d'eux permet de créer la BDD et les différentes tables et l'autre permet d'insérer les variables.
-Le chemin d'accès à la base de données :
-	* Hostname = __localhost__
-	* Port = __3306__
-	* Username = __root__
-	* Password = __root__
+Le chemin d'accès à la base de données :  
+* Hostname = __localhost__
+* Port = __3306__
+* Username = __root__
+* Password = __root__
 
-	## Informations de connexion :
+## Informations de connexion :
 	
-	* Profil Utilisateur : mail - *user@gmail.com* | mot de passe - *user*
-	* Profil Administrateur : mail - *admin@gmail.com* | mot de passe - *admin*
+* Profil Utilisateur : mail - *user@gmail.com* | mot de passe - *user*
+* Profil Administrateur : mail - *admin@gmail.com* | mot de passe - *admin*
 
 # Les requêtes Postman :
 
