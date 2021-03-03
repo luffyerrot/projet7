@@ -1,7 +1,7 @@
 # Packaging de l'application :  
 
 Après avoir récupérer l'application web, l'API REST et le batch vous n'avez plus qu'à packager les projets.  
-Pour cela ouvrer un invite de commandes à la racine d'un des projets et taper : `mvn package``.
+Pour cela ouvrer un invite de commandes à la racine d'un des projets et taper : `mvn package`.
 
 # Exécution des projets :
 
@@ -12,6 +12,16 @@ dans l'invite de commande.
 
 Pour la base de données vous pouvez utiliser les fichiers .SQL dans le fichier nommé __sql__.  
 L'un d'eux permet de créer la BDD et les différentes tables et l'autre permet d'insérer les variables.
+Le chemin d'accès à la base de données :
+	* Hostname = __localhost__
+	* Port = __3306__
+	* Username = __root__
+	* Password = __root__
+
+	## Informations de connexion :
+	
+	* Profil Utilisateur : mail - *user@gmail.com* | mot de passe - *user*
+	* Profil Administrateur : mail - *admin@gmail.com* | mot de passe - *admin*
 
 # Les requêtes Postman :
 
