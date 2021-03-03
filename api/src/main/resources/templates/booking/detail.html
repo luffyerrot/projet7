@@ -10,26 +10,41 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 	<div class="container" id="main" align="center">
 		<div class="row">
 			<div class="col-md-12">
-				<h1><b>Livres</b></h1>
+				<h1><b>Le livre</b></h1>
 				<div class="card">
 					<div class="card-body">
-					<table class="table table-dark table-responsive col-auto row col-md-4 col-md-push-4">
+					<table class="table table-dark table-responsive col-auto row col-md-4 col-md-push-8">
+						<tr>
+							<th scope="col">Titre</th>
+							<th scope="col">Auteur</th>
+							<th scope="col">Editeur</th>
+						</tr>
+						<tr>
+					        <td th:text="${book.title}">...</td>
+					        <td th:text="${book.author}">...</td>
+					        <td th:text="${book.publisher}">...</td>
+					    </tr>
+					</table>
+					</div>
+				</div>
+				<h1><b>Les copies</b></h1>
+				<div class="card">
+					<div class="card-body">
+					<table class="table table-dark table-responsive col-auto row col-md-4 col-md-push-8">
 						<tr>
 							<th scope="col">#</th>
 							<th scope="col">Etat</th>
-							<th scope="col">Id</th>
-							<th scope="col">Réserver</th>
+							<th scope="col">Prêt</th>
 						</tr>
 						<tr th:each="copie, cStat : ${copies}">
 					        <td th:text="${cStat.index}">...</td>
 					        <td th:text="${copie.etat}">...</td>
-					        <td th:text="${copie.id}">...</td>
 							<td>
 								<div th:if="${userbookingcopy.contains(copie.id)}">
 									<p align="center">---</p>
 								</div>
 								<div th:unless="${userbookingcopy.contains(copie.id)}">
-									<a th:href="@{/booking/create(id = ${copie.id})}"  class="btn btn-outline-danger" id="link">Réserver</a>
+									<a th:href="@{/booking/admin/pret(id = ${copie.id})}"  class="btn btn-outline-info" id="link">faire un prêt</a>
 								</div>
 							</td>
 					    </tr>

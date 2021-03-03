@@ -3,14 +3,14 @@
 xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head th:insert="fragments/head.html">
 	<meta charset="UTF-8"/>
-	<title>Reservation</title>
+	<title>Prêts</title>
 </head>
 <body>
 	<header th:insert="fragments/header.html"></header>
 	<div class="container" id="main" align="center">
 		<div class="row">
 			<div class="col-md-12">
-				<h1><b>Réservation</b></h1>
+				<h1><b>Prêts</b></h1>
 				<div class="card">
 					<div class="card-body">
 						<table class="text-nowrap table table-dark table-responsive col-auto row col-md-9 col-md-push-12">
@@ -19,7 +19,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 								<th scope="col">Nom de l'utilisateur</th>
 								<th scope="col">Date d'emprunt</th>
 								<th scope="col">Etat du livre</th>
-								<th scope="col">Récupéré</th>
+								<th scope="col">Récupéré ?</th>
 							</tr>
 							<tr th:each="booking : ${bookings}">
 						        <td th:text="${booking?.copy?.book?.title}">...</td>
@@ -31,7 +31,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 						</table>
 					</div>
 				</div>
-				<h1><b>Historique des réservations</b></h1>
+				<h1><b>Historique des prêts</b></h1>
 				<div class="card">
 					<div class="card-body">
 						<table class="text-nowrap table table-dark table-responsive col-auto row col-md-9 col-md-push-12">
@@ -42,12 +42,12 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 								<th scope="col">Etat du livre</th>
 								<th scope="col">Récupéré</th>
 							</tr>
-							<tr th:each="bookingshystorique : ${bookingshystoriques}">
-						        <td th:text="${bookingshystorique?.copy?.book?.title}">...</td>
-						        <td th:text="${bookingshystorique?.user?.username}">...</td>
-						        <td th:text="${#dates.format(bookingshystorique.booking_date, 'dd-MM-yyyy')}">...</td>
-						        <td th:text="${bookingshystorique?.copy?.etat}">...</td>
-								<td th:text="${bookingshystorique.rendering}">...</td>
+							<tr th:each="bookingshistorique : ${bookingshistoriques}">
+						        <td th:text="${bookingshistorique?.copy?.book?.title}">...</td>
+						        <td th:text="${bookingshistorique?.user?.username}">...</td>
+						        <td th:text="${#dates.format(bookingshistorique.booking_date, 'dd-MM-yyyy')}">...</td>
+						        <td th:text="${bookingshistorique?.copy?.etat}">...</td>
+								<td th:if="${bookingshistorique.rendering == true}">Oui</td>
 						    </tr>
 						</table>
 					</div>

@@ -29,6 +29,8 @@ public class BookingService {
 
 	@Autowired
 	private Environment environment;
+	@Autowired
+	private UserService userService;
 	
 	private InitBooking init = new InitBooking();
 	private InitCopy initCopy = new InitCopy();
@@ -141,10 +143,10 @@ public class BookingService {
 		return userCopyId;
 	}
 	
-	public ResponseEntity<Void> create(Long id)
+	public ResponseEntity<Void> create(Long id, String email)
 	{
 		final String uri = environment.getRequiredProperty("booking.url") + "save";
-		final String uriBooking = environment.getRequiredProperty("booking.url") + "userid/" + userAuth().getId();
+		final String uriBooking = environment.getRequiredProperty("booking.url") + "userid/" + userService.getUserEmail(email).getId();
 		final String uriCopy = environment.getRequiredProperty("copy.url") + id;
 		
 		String resultBooking = restTemplate.getForObject(uriBooking, String.class);
@@ -165,12 +167,12 @@ public class BookingService {
 		
 		Booking booking = new Booking();
 		booking.setCopy(copy);
-		booking.setUser(userAuth());
+		booking.setUser(userService.getUserEmail(email));
 		
 		Date date = new Date();
 		Calendar c = Calendar.getInstance();
 		c.setTime(date);
-		c.add(Calendar.DATE, -45);
+		/**c.add(Calendar.DATE, -45);**/
 		date = c.getTime();
 		
 		booking.setBooking_date(date);

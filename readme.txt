@@ -1,10 +1,30 @@
-Après avoir récupérer l'application web, l'API REST et le batch vous n'avez plus qu'à packager les projets.
-Pour cela ouvrer un invite de commandes à la racine d'un des projets et taper : "mvn package". 
-Une fois cela fait pour les trois projets vous pouvez récupérer dans chaque dossier target de chacun d'entre eux le .jar.
-Pour le lancer ouvrez un invite de commande à l'emplacement du fichier jar que vous voulez démarrer.
-	-exemple : pour l'API REST lorsque vôtre invite de commande est lancé vous taper : "java -jar apirest-0.0.1-SNAPSHOT.jar"
-	(sachant que "apirest-0.0.1-SNAPSHOT.jar" est le nom par défault du projet.
-pour la BDD vous pouvez utiliser les fichier .SQL dans le fichier sql l'un permet de créer la BDD une fois cela fait et après avoir
-lancé l'API REST une fois les tables seront générée et vous pourrez y insérer les variables.
+#titre Packaging de l'application :  
 
-Dans le dossier api-rest vous trouverer le fichier postman, dans lequel vous aurez la collection des requêtes postman.
+Après avoir récupérer l'application web, l'API REST et le batch vous n'avez plus qu'à packager les projets.  
+Pour cela ouvrer un invite de commandes à la racine d'un des projets et taper : `mvn package``.
+
+#titre Exécution des projets :
+
+Une fois cela fait pour les trois projets vous pouvez éxécuter la commande : `mvn spring-boot:run` à la racine de chaque projet
+dans l'invite de commande.
+
+#titre Paramétrage de la BDD :
+
+Pour la base de données vous pouvez utiliser les fichiers .SQL dans le fichier nommé _sql_.  
+L'un d'eux permet de créer la BDD et les différentes tables et l'autre permet d'insérer les variables.
+
+#titre Les requêtes Postman :
+
+Dans le dossier api-rest vous trouverez le fichier nommé _postman_, dans lequel vous aurez la collection des requêtes postman.
+
+#titre Informations utiles :
+
+* gestionnaire de projets - _Maven_ | version - _4.0.0_
+* frameworks
+	`* _Spring Boot_ | version - _2.3.1.RELEASE_
+	`* _Hibernate_
+	`* _Thymeleaf_ | version - _3.0.4.RELEASE_
+	`* _Json_ | version - _20200518_
+	`* _Spring Boot Mail_ | version - _2.1.9.RELEASE_
+	`* _Spring Boot Batch_ | version - _2.1.9.RELEASE_
+* java - version - _1.8_

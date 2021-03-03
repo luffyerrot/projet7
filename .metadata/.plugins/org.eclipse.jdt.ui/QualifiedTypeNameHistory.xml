@@ -56,8 +56,8 @@
 <fullyQualifiedTypeName name="fr.pierre.apirest.entities.InitBook"/>
 <fullyQualifiedTypeName name="java.awt.print.Book"/>
 <fullyQualifiedTypeName name="fr.pierre.apirest.entities.Book"/>
-<fullyQualifiedTypeName name="fr.pierre.api.services.CopyService"/>
 <fullyQualifiedTypeName name="fr.pierre.apirest.entities.User"/>
 <fullyQualifiedTypeName name="org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration"/>
 <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestParam"/>
+<fullyQualifiedTypeName name="fr.pierre.api.services.CopyService"/>
 </qualifiedTypeNameHistroy>

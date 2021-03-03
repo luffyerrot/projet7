@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import fr.pierre.api.services.BookService;
 import fr.pierre.api.services.BookingService;
+import fr.pierre.api.services.CopyService;
 import fr.pierre.api.services.UserService;
 import fr.pierre.api.entities.User;
 
@@ -24,6 +25,8 @@ public class BookingController {
 	public BookingService serviceBooking;
 	@Autowired
 	public BookService serviceBook;
+	@Autowired
+	public CopyService serviceCopie;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView getBookByIbn(ModelMap model) {
@@ -34,23 +37,30 @@ public class BookingController {
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 	public ModelAndView getAllBooking(ModelMap model) {
 	    model.addAttribute("bookings", serviceBooking.getAllBookingNotRendered());
-	    model.addAttribute("bookingshystoriques", serviceBooking.getAllBookingRendered());
+	    model.addAttribute("bookingshistoriques", serviceBooking.getAllBookingRendered());
 	    return new ModelAndView("booking/adminhome", model);
 	}
 	
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
 	public ModelAndView detail(ModelMap model, @RequestParam(name="ibn", required = true) Long ibn) {
+		model.addAttribute("book", serviceBook.getBookByIbn(ibn));
 		model.addAttribute("userbookingcopy", serviceBooking.userBookingCopyId());
 		model.addAttribute("copies", serviceBook.getBookByIbn(ibn).getCopies());
 		return new ModelAndView("booking/detail", model);
 	}
 	
-	@RequestMapping(value = "/create", method = RequestMethod.GET)
-	public ModelAndView create(ModelMap model, @RequestParam(name="id", required = true) Long id) {
-		if (!serviceBooking.userBookingCopyId().contains(id)) {
-			serviceBooking.create(id);
-		}
-	    return new ModelAndView("redirect:/", model);
+	@RequestMapping(value = "/admin/pret", method = RequestMethod.GET)
+	public ModelAndView pret(ModelMap model, @RequestParam(name="id", required = true) Long id) {
+		model.addAttribute("copie", serviceCopie.getCopyId(id));
+		return new ModelAndView("booking/pret", model);
+	}
+	
+	@RequestMapping(value = "/admin/create", method = RequestMethod.GET)
+	public ModelAndView create(ModelMap model, @RequestParam(name="id", required = true) Long id, @RequestParam(name="email", required = true) String email) {
+		serviceBooking.create(id, email);
+	    model.addAttribute("bookings", serviceBooking.getAllBookingNotRendered());
+	    model.addAttribute("bookingshistoriques", serviceBooking.getAllBookingRendered());
+	    return new ModelAndView("redirect:/booking/admin", model);
 	}
 	
 	@RequestMapping(value = "/extend", method = RequestMethod.GET)
@@ -65,7 +75,7 @@ public class BookingController {
 	public ModelAndView delete(ModelMap model, @RequestParam(name="id", required = true) Long id) {
 		serviceBooking.changeRendering(id);
 		model.addAttribute("bookings", serviceBooking.getAllBookingNotRendered());
-	    model.addAttribute("bookingshystoriques", serviceBooking.getAllBookingRendered());
+	    model.addAttribute("bookingshistoriques", serviceBooking.getAllBookingRendered());
 	    return new ModelAndView("redirect:/booking/admin", model);
 	}
 }
