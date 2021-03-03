@@ -3,7 +3,7 @@
   <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;workbench>&#xD;&#xA;&lt;mruList>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;Book.java&quot; tooltip=&quot;api-rest/src/main/java/fr/pierre/apirest/entities/Book.java&quot;>&#xD;&#xA;&lt;persistable path=&quot;/api-rest/src/main/java/fr/pierre/apirest/entities/Book.java&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.wst.html.core.htmlsource.source&quot; name=&quot;home.html&quot; tooltip=&quot;api/src/main/resources/templates/booking/home.html&quot;>&#xD;&#xA;&lt;persistable path=&quot;/api/src/main/resources/templates/booking/home.html&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.wst.html.core.htmlsource.source&quot; name=&quot;pret.html&quot; tooltip=&quot;api/src/main/resources/templates/booking/pret.html&quot;>&#xD;&#xA;&lt;persistable path=&quot;/api/src/main/resources/templates/booking/pret.html&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.wst.html.core.htmlsource.source&quot; name=&quot;detail.html&quot; tooltip=&quot;api/src/main/resources/templates/booking/detail.html&quot;>&#xD;&#xA;&lt;persistable path=&quot;/api/src/main/resources/templates/booking/detail.html&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;BookingController.java&quot; tooltip=&quot;api/src/main/java/fr/pierre/api/controllers/BookingController.java&quot;>&#xD;&#xA;&lt;persistable path=&quot;/api/src/main/java/fr/pierre/api/controllers/BookingController.java&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.m2e.editor.MavenPomEditor&quot; name=&quot;pom.xml&quot; tooltip=&quot;batch/pom.xml&quot;>&#xD;&#xA;&lt;persistable path=&quot;/batch/pom.xml&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.m2e.editor.MavenPomEditor&quot; name=&quot;pom.xml&quot; tooltip=&quot;api-rest/pom.xml&quot;>&#xD;&#xA;&lt;persistable path=&quot;/api-rest/pom.xml&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.m2e.editor.MavenPomEditor&quot; name=&quot;pom.xml&quot; tooltip=&quot;api/pom.xml&quot;>&#xD;&#xA;&lt;persistable path=&quot;/api/pom.xml&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.ui.DefaultTextEditor&quot; name=&quot;mvnw&quot; tooltip=&quot;api/mvnw&quot;>&#xD;&#xA;&lt;persistable path=&quot;/api/mvnw&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.wst.html.core.htmlsource.source&quot; name=&quot;adminhome.html&quot; tooltip=&quot;api/src/main/resources/templates/booking/adminhome.html&quot;>&#xD;&#xA;&lt;persistable path=&quot;/api/src/main/resources/templates/booking/adminhome.html&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;UserService.java&quot; tooltip=&quot;api/src/main/java/fr/pierre/api/services/UserService.java&quot;>&#xD;&#xA;&lt;persistable path=&quot;/api/src/main/java/fr/pierre/api/services/UserService.java&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;BookingService.java&quot; tooltip=&quot;api/src/main/java/fr/pierre/api/services/BookingService.java&quot;>&#xD;&#xA;&lt;persistable path=&quot;/api/src/main/java/fr/pierre/api/services/BookingService.java&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.wst.html.core.htmlsource.source&quot; name=&quot;create.html&quot; tooltip=&quot;api/src/main/resources/templates/create.html&quot;>&#xD;&#xA;&lt;persistable path=&quot;/api/src/main/resources/templates/create.html&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;UserController.java&quot; tooltip=&quot;api-rest/src/main/java/fr/pierre/apirest/controllers/UserController.java&quot;>&#xD;&#xA;&lt;persistable path=&quot;/api-rest/src/main/java/fr/pierre/apirest/controllers/UserController.java&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.wst.html.core.htmlsource.source&quot; name=&quot;nav.html&quot; tooltip=&quot;api/src/main/resources/templates/fragments/nav.html&quot;>&#xD;&#xA;&lt;persistable path=&quot;/api/src/main/resources/templates/fragments/nav.html&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.wst.html.core.htmlsource.source&quot; name=&quot;create.html&quot; tooltip=&quot;api/src/main/resources/templates/book/create.html&quot;>&#xD;&#xA;&lt;persistable path=&quot;/api/src/main/resources/templates/book/create.html&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.wst.html.core.htmlsource.source&quot; name=&quot;create.html&quot; tooltip=&quot;api/src/main/resources/templates/copy/create.html&quot;>&#xD;&#xA;&lt;persistable path=&quot;/api/src/main/resources/templates/copy/create.html&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;WebSecurityConfig.java&quot; tooltip=&quot;api/src/main/java/fr/pierre/api/configs/WebSecurityConfig.java&quot;>&#xD;&#xA;&lt;persistable path=&quot;/api/src/main/java/fr/pierre/api/configs/WebSecurityConfig.java&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;BookingWriter.java&quot; tooltip=&quot;batch/src/main/java/fr/pierre/batch/writer/BookingWriter.java&quot;>&#xD;&#xA;&lt;persistable path=&quot;/batch/src/main/java/fr/pierre/batch/writer/BookingWriter.java&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;BookingReader.java&quot; tooltip=&quot;batch/src/main/java/fr/pierre/batch/reader/BookingReader.java&quot;>&#xD;&#xA;&lt;persistable path=&quot;/batch/src/main/java/fr/pierre/batch/reader/BookingReader.java&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;/mruList>&#xD;&#xA;&lt;/workbench>"/>
   <tags>ModelMigrationProcessor.001</tags>
   <tags>activeSchemeId:org.eclipse.ui.defaultAcceleratorConfiguration</tags>
-  <children xsi:type="basic:TrimmedWindow" xmi:id="_eu8m8XwLEeuu1_ChSEvE_Q" elementId="IDEWindow" contributorURI="platform:/plugin/org.eclipse.platform" selectedElement="_eu8m8nwLEeuu1_ChSEvE_Q" label="%trimmedwindow.label.eclipseSDK" x="175" y="78" width="1645" height="920">
+  <children xsi:type="basic:TrimmedWindow" xmi:id="_eu8m8XwLEeuu1_ChSEvE_Q" elementId="IDEWindow" contributorURI="platform:/plugin/org.eclipse.platform" selectedElement="_eu8m8nwLEeuu1_ChSEvE_Q" label="%trimmedwindow.label.eclipseSDK" x="26" y="114" width="1645" height="920">
     <persistedState key="coolBarVisible" value="true"/>
     <persistedState key="perspectiveBarVisible" value="true"/>
     <persistedState key="isRestored" value="true"/>
@@ -119,9 +119,10 @@
               </children>
             </children>
             <children xsi:type="basic:PartSashContainer" xmi:id="_eu8nAnwLEeuu1_ChSEvE_Q" containerData="8042" selectedElement="_eu8nA3wLEeuu1_ChSEvE_Q" horizontal="true">
-              <children xsi:type="basic:PartSashContainer" xmi:id="_eu8nA3wLEeuu1_ChSEvE_Q" containerData="5000" selectedElement="_eu8nBHwLEeuu1_ChSEvE_Q">
-                <children xsi:type="advanced:Placeholder" xmi:id="_eu8nBHwLEeuu1_ChSEvE_Q" elementId="org.eclipse.ui.editorss" containerData="7903" ref="_eu91bHwLEeuu1_ChSEvE_Q"/>
-                <children xsi:type="basic:PartStack" xmi:id="_eu8nBXwLEeuu1_ChSEvE_Q" elementId="PartStack@77e95114" containerData="2097" selectedElement="_eu8nBnwLEeuu1_ChSEvE_Q">
+              <children xsi:type="basic:PartSashContainer" xmi:id="_eu8nA3wLEeuu1_ChSEvE_Q" containerData="5000" selectedElement="_eu8nBXwLEeuu1_ChSEvE_Q">
+                <children xsi:type="advanced:Placeholder" xmi:id="_eu8nBHwLEeuu1_ChSEvE_Q" elementId="org.eclipse.ui.editorss" containerData="5279" ref="_eu91bHwLEeuu1_ChSEvE_Q"/>
+                <children xsi:type="basic:PartStack" xmi:id="_eu8nBXwLEeuu1_ChSEvE_Q" elementId="PartStack@77e95114" containerData="4721" selectedElement="_eu8nB3wLEeuu1_ChSEvE_Q">
+                  <tags>active</tags>
                   <children xsi:type="advanced:Placeholder" xmi:id="_eu8nBnwLEeuu1_ChSEvE_Q" elementId="org.eclipse.ui.console.ConsoleView" ref="_eu91r3wLEeuu1_ChSEvE_Q" closeable="true">
                     <tags>View</tags>
                     <tags>categoryTag:General</tags>
@@ -368,7 +369,6 @@
         <tags>org.eclipse.e4.secondaryDataStack</tags>
         <tags>General</tags>
         <tags>Git</tags>
-        <tags>active</tags>
         <children xsi:type="advanced:Placeholder" xmi:id="_eu91bnwLEeuu1_ChSEvE_Q" elementId="org.eclipse.ui.views.ProblemView" toBeRendered="false" ref="_eu91onwLEeuu1_ChSEvE_Q" closeable="true">
           <tags>View</tags>
           <tags>categoryTag:General</tags>
@@ -418,8 +418,6 @@
           <tags>Editor</tags>
           <tags>removeOnHide</tags>
           <tags>org.eclipse.wst.html.core.htmlsource.source</tags>
-          <tags>active</tags>
-          <tags>activeOnClose</tags>
         </children>
       </children>
     </sharedElements>
@@ -550,7 +548,7 @@
         <tags>menuContribution:popup</tags>
         <tags>popup:org.eclipse.debug.ui.ProcessConsoleType.#ContextMenu</tags>
       </menus>
-      <toolbar xmi:id="_eu91tHwLEeuu1_ChSEvE_Q" elementId="org.eclipse.ui.console.ConsoleView"/>
+      <toolbar xmi:id="_eu91tHwLEeuu1_ChSEvE_Q" elementId="org.eclipse.ui.console.ConsoleView" visible="false"/>
     </sharedElements>
     <sharedElements xsi:type="basic:Part" xmi:id="_eu91tXwLEeuu1_ChSEvE_Q" elementId="org.eclipse.ui.views.BookmarkView" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="Bookmarks" iconURI="platform:/plugin/org.eclipse.ui.ide/icons/full/eview16/bkmrk_nav.png" tooltip="" closeable="true">
       <persistedState key="originalCompatibilityViewClass" value="org.eclipse.ui.internal.views.markers.BookmarksView"/>
@@ -648,11 +646,13 @@
       <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;view/>"/>
       <tags>View</tags>
       <tags>categoryTag:Git</tags>
+      <tags>active</tags>
+      <tags>activeOnClose</tags>
       <menus xmi:id="_eu91yXwLEeuu1_ChSEvE_Q" elementId="org.eclipse.egit.ui.StagingView">
         <tags>ViewMenu</tags>
         <tags>menuContribution:menu</tags>
       </menus>
-      <toolbar xmi:id="_eu9103wLEeuu1_ChSEvE_Q" elementId="org.eclipse.egit.ui.StagingView" visible="false"/>
+      <toolbar xmi:id="_eu9103wLEeuu1_ChSEvE_Q" elementId="org.eclipse.egit.ui.StagingView"/>
     </sharedElements>
     <sharedElements xsi:type="basic:Part" xmi:id="_eu9123wLEeuu1_ChSEvE_Q" elementId="org.eclipse.eclemma.ui.CoverageView" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="Coverage" iconURI="platform:/plugin/org.eclipse.eclemma.ui/icons/full/eview16/coverage.png" tooltip="" closeable="true">
       <persistedState key="originalCompatibilityViewBundle" value="org.eclipse.eclemma.ui"/>
@@ -763,7 +763,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_eu919nwLEeuu1_ChSEvE_Q" elementId="org.eclipse.ui.workbench.file">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_RGydQHwNEeuKPYyb0dF8sQ" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_evATKnwLEeuu1_ChSEvE_Q"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_MemzYHwcEeun3_TnwrJYzg" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_evATKnwLEeuu1_ChSEvE_Q"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_eu92A3wLEeuu1_ChSEvE_Q" elementId="group.edit" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -810,7 +810,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_eu92YHwLEeuu1_ChSEvE_Q" elementId="org.eclipse.ui.workbench.navigate">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_RG05gHwNEeuKPYyb0dF8sQ" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_evAS2nwLEeuu1_ChSEvE_Q"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_MepPoHwcEeun3_TnwrJYzg" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_evAS2nwLEeuu1_ChSEvE_Q"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_eu92a3wLEeuu1_ChSEvE_Q" elementId="group.editor" toBeRendered="false">
         <tags>toolbarSeparator</tags>
